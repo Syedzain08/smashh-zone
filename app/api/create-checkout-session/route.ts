@@ -74,7 +74,7 @@ function computePricing(
   const grossSubtotalPaisa = price * quantity;
   const netSubtotalPaisa = Math.max(0, grossSubtotalPaisa - totalDiscountPaisa);
 
-  const flatFeePaisa = 120 * 100;
+  const flatFeePaisa = 70 * 100;
   const totalAmountPaisa = Math.ceil((netSubtotalPaisa + flatFeePaisa) / 0.96);
   const processingFeePaisa = totalAmountPaisa - netSubtotalPaisa;
 
@@ -163,7 +163,7 @@ export async function POST(req: NextRequest) {
       intent: "CYBERSOURCE",
       mode: "payment",
       entry_mode: "raw",
-      include_fees: false,
+      include_fees: true,
       currency: "PKR",
       amount: pricing.totalAmountPaisa,
       metadata: {
