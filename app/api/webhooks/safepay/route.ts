@@ -85,17 +85,34 @@ export async function POST(req: NextRequest) {
       });
 
       const baseUrl = process.env.NEXT_PUBLIC_APP_URL || `https://${req.headers.get("host")}`;
-      
-      fetch(`${baseUrl}/api/jobs/fulfill-tickets`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-worker-secret": process.env.WORKER_SECRET!,
-        },
-        body: JSON.stringify({ orderId: order.id }),
-      }).catch((err) => {
-        console.error("Failed to trigger background fulfillment worker:", err);
-      });
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 sec timeout
+
+      try {
+        const workerRes = await fetch(`${baseUrl}/api/jobs/fulfill-tickets`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-worker-secret": process.env.WORKER_SECRET!,
+          },
+          body: JSON.stringify({ orderId: order.id }),
+          signal: controller.signal,
+        });
+
+        if (!workerRes.ok) {
+          console.error("Fulfillment worker status:", workerRes.status);
+        }
+      } catch (err: unknown) {
+        const error = err as Error;
+
+        if (error.name === "AbortError") {
+          console.warn("Fulfillment request timed out, but task running in background");
+        } else {
+          console.error("Failed to trigger worker:", error.message || error);
+        }
+      } finally {
+        clearTimeout(timeoutId);
+      }
 
       break;
     }
