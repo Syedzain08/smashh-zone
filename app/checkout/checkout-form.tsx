@@ -95,7 +95,7 @@ export default function CheckoutForm({ variant }: { variant: Variant }) {
   const grossSubtotalPaisa = variant.price * selectedQuantity;
   const netSubtotalPaisa = Math.max(0, grossSubtotalPaisa - totalDiscountPaisa);
 
-  const flatFeePaisa = 70 * 100;
+  const flatFeePaisa = 120 * 100;
   const totalAmountPaisa = Math.ceil((netSubtotalPaisa + flatFeePaisa) / 0.96);
   const processingFeePaisa = totalAmountPaisa - netSubtotalPaisa;
 
