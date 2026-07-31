@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useFieldArray, useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import computePricing from '@/lib/pricing';
 
 const attendeeSchema = z.object({
   name: z.string().min(2, 'Required'),
@@ -66,7 +67,6 @@ export default function CheckoutForm({ variant }: { variant: Variant }) {
 
   const { fields, replace } = useFieldArray({ control, name: 'attendees' });
 
-
   const quantityValue = useWatch({ control, name: 'quantity' });
   const affiliationValue = useWatch({ control, name: 'affiliationType' });
 
@@ -87,17 +87,14 @@ export default function CheckoutForm({ variant }: { variant: Variant }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedQuantity, fields.length, replace]);
 
-  const isEligibleForDelegation = variant.label !== 'The Rhythm Pass' && selectedAffiliation !== 'Private';
-  const isDelegation = isEligibleForDelegation && selectedQuantity >= 5;
-
-  const totalDiscountPaisa = isDelegation ? selectedQuantity * 100 * 100 : 0;
-
-  const grossSubtotalPaisa = variant.price * selectedQuantity;
-  const netSubtotalPaisa = Math.max(0, grossSubtotalPaisa - totalDiscountPaisa);
-
-  const flatFeePaisa = 120 * 100;
-  const totalAmountPaisa = Math.ceil((netSubtotalPaisa + flatFeePaisa) / 0.96);
-  const processingFeePaisa = totalAmountPaisa - netSubtotalPaisa;
+  const pricing = computePricing(variant.price, selectedQuantity, variant.label, selectedAffiliation);
+  const {
+    grossSubtotalPaisa,
+    totalDiscountPaisa,
+    processingFeePaisa,
+    totalAmountPaisa,
+    isDelegation,
+  } = pricing;
 
   const handleQuantityChange = (delta: number) => {
     const nextVal = Math.min(20, Math.max(1, selectedQuantity + delta));
@@ -187,7 +184,6 @@ export default function CheckoutForm({ variant }: { variant: Variant }) {
           </div>
         </div>
 
-   
         <div className="space-y-2 border-t border-secondary/15 bg-black/35 px-6 py-4 text-sm backdrop-blur-sm">
           <div className="flex justify-between text-secondary/80">
             <span>Pass Subtotal ({selectedQuantity} × Rs. {(variant.price / 100).toLocaleString()})</span>
@@ -215,7 +211,6 @@ export default function CheckoutForm({ variant }: { variant: Variant }) {
         </div>
       </div>
 
-      
       <fieldset className="rounded-2xl border border-primary/10 bg-white p-6 shadow-sm">
         <legend className="px-1 font-primary text-xs font-bold uppercase tracking-wider text-primary">
           Buyer & Pass 1 Details
@@ -238,7 +233,6 @@ export default function CheckoutForm({ variant }: { variant: Variant }) {
         </div>
       </fieldset>
 
-   
       <fieldset className="rounded-2xl border border-primary/10 bg-white p-6 shadow-sm">
         <legend className="px-1 font-primary text-xs font-bold uppercase tracking-wider text-primary">
           Affiliation
@@ -274,7 +268,6 @@ export default function CheckoutForm({ variant }: { variant: Variant }) {
         )}
       </fieldset>
 
-
       {fields.map((field, index) => (
         <fieldset key={field.id} className="rounded-2xl border border-primary/10 bg-white p-6 shadow-sm">
           <legend className="px-1 font-primary text-xs font-bold uppercase tracking-wider text-primary">
@@ -299,7 +292,6 @@ export default function CheckoutForm({ variant }: { variant: Variant }) {
         </fieldset>
       ))}
 
-    
       <div className="space-y-3">
         <div className="space-y-1.5">
           <label
@@ -368,7 +360,6 @@ export default function CheckoutForm({ variant }: { variant: Variant }) {
         </div>
       </div>
 
-   
       {errors.root?.serverError && (
         <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
           <p className="font-semibold">Submission Failed</p>

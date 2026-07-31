@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { customAlphabet } from "nanoid";
 import SafepayNodeCore from "@sfpy/node-core";
 import { prisma } from "@/lib/prisma";
-import { AffiliationType, PassTier } from "@prisma/client";
+import { AffiliationType } from "@prisma/client";
+import computePricing, { VARIANTS } from "@/lib/pricing";
 
 const SAFEPAY_SECRET_KEY = process.env.SAFEPAY_SECRET_KEY;
 const SAFEPAY_PUBLIC_KEY = process.env.NEXT_PUBLIC_SAFEPAY_PUBLIC_KEY;
@@ -11,7 +12,6 @@ const IS_LIVE = process.env.IS_LIVE === "true";
 if (!SAFEPAY_SECRET_KEY) {
   throw new Error("SAFEPAY_SECRET_KEY environment variable is required.");
 }
-
 
 if (!SAFEPAY_PUBLIC_KEY) {
   throw new Error("SAFEPAY_PUBLIC_KEY environment variable is required.");
@@ -27,12 +27,6 @@ const safepay = new SafepayNodeCore(SAFEPAY_SECRET_KEY, {
 });
 
 const nanoid = customAlphabet("0123456789ABCDEFGHJKMNPQRSTVWXYZ", 8);
-
-const VARIANTS: Record<string, { label: string; price: number; tier: PassTier }> = {
-  rhythm: { label: "The Rhythm Pass", price: 199900, tier: "RHYTHM" },
-  champion: { label: "The Champion Pass", price: 229900, tier: "CHAMPION" },
-  elite: { label: "The Elite Pass", price: 499900, tier: "ELITE" },
-};
 
 const AFFILIATION_MAP: Record<string, AffiliationType> = {
   Private: "PRIVATE",
@@ -61,26 +55,6 @@ interface CheckoutRequestBody {
   attendees: AttendeeInput[];
 }
 
-function computePricing(
-  price: number,
-  quantity: number,
-  tierLabel: string,
-  affiliation: string
-) {
-  const isEligibleForDelegation = tierLabel !== "The Rhythm Pass" && affiliation !== "Private";
-  const isDelegation = isEligibleForDelegation && quantity >= 5;
-
-  const totalDiscountPaisa = isDelegation ? quantity * 100 * 100 : 0;
-  const grossSubtotalPaisa = price * quantity;
-  const netSubtotalPaisa = Math.max(0, grossSubtotalPaisa - totalDiscountPaisa);
-
-  const flatFeePaisa = 70 * 100;
-  const totalAmountPaisa = Math.ceil((netSubtotalPaisa + flatFeePaisa) / 0.96);
-  const processingFeePaisa = totalAmountPaisa - netSubtotalPaisa;
-
-  return { grossSubtotalPaisa, totalDiscountPaisa, netSubtotalPaisa, processingFeePaisa, totalAmountPaisa };
-}
-
 export async function POST(req: NextRequest) {
   let body: CheckoutRequestBody;
   try {
@@ -89,7 +63,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 
-  const variant = VARIANTS[body.tierKey?.toLowerCase()];
+  const variant = VARIANTS[body.tierKey?.toLowerCase() as keyof typeof VARIANTS];
   if (!variant) {
     return NextResponse.json({ error: "Unknown pass tier" }, { status: 400 });
   }
@@ -163,7 +137,7 @@ export async function POST(req: NextRequest) {
       intent: "CYBERSOURCE",
       mode: "payment",
       entry_mode: "raw",
-      include_fees: true,
+      include_fees: false,
       currency: "PKR",
       amount: pricing.totalAmountPaisa,
       metadata: {

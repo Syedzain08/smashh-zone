@@ -2,88 +2,37 @@
 
 import Link from 'next/link';
 import { Check, X, Flame, Mic, Trophy, Star } from 'lucide-react';
+import { VARIANTS, PassTierKey } from '@/lib/pricing';
 
-type PassFeature = {
-  label: string;
-  included: boolean;
+const PASS_ICONS: Record<PassTierKey, React.ReactNode> = {
+  rhythm: (
+    <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 p-2 text-accent">
+      <Mic className="h-4 w-4" />
+    </div>
+  ),
+  champion: (
+    <div className="flex items-center gap-1.5 rounded-xl border border-accent/30 bg-accent/10 p-2 text-accent">
+      <Trophy className="h-4 w-4" />
+      <span className="text-xs font-black text-slate-400">+</span>
+      <Mic className="h-4 w-4" />
+    </div>
+  ),
+  elite: (
+    <div className="flex items-center gap-1.5 rounded-xl border border-accent/40 bg-accent/20 p-2 text-accent">
+      <Trophy className="h-4 w-4" />
+      <span className="text-xs font-black text-slate-400">+</span>
+      <Mic className="h-4 w-4" />
+      <span className="text-xs font-black text-slate-400">+</span>
+      <Star className="h-4 w-4 fill-accent" />
+    </div>
+  ),
 };
 
-type Pass = {
-  slug: string;
-  name: string;
-  tagline: string;
-  price: string;
-  totalTickets: number;
-  popular?: boolean;
-  icons: React.ReactNode;
-  features: PassFeature[];
-};
-
-const PASSES: Pass[] = [
-  {
-    slug: 'rhythm',
-    name: 'The Rhythm Pass',
-    tagline: 'Concert Only Access',
-    price: '1,999',
-    totalTickets: 2300,
-    icons: (
-      <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 p-2 text-accent">
-        <Mic className="h-4 w-4" />
-      </div>
-    ),
-    features: [
-      { label: 'Badminton Access', included: false },
-      { label: 'Base Concert Access', included: true },
-      { label: 'VIP Concert Access', included: false },
-      { label: 'Front Row Seats', included: false },
-    ],
-  },
-  {
-    slug: 'champion',
-    name: 'The Champion Pass',
-    tagline: 'Badminton + Concert Access',
-    price: '2,299',
-    totalTickets: 1000,
-    popular: true,
-    icons: (
-      <div className="flex items-center gap-1.5 rounded-xl border border-accent/30 bg-accent/10 p-2 text-accent">
-        <Trophy className="h-4 w-4" />
-        <span className="text-xs font-black text-slate-400">+</span>
-        <Mic className="h-4 w-4" />
-      </div>
-    ),
-    features: [
-      { label: 'Badminton Access', included: true },
-      { label: 'Base Concert Access', included: true },
-      { label: 'VIP Concert Access', included: false },
-      { label: 'Front Row Seats', included: false },
-    ],
-  },
-  {
-    slug: 'elite',
-    name: 'The Elite Pass',
-    tagline: 'VIP Experience + Badminton Access',
-    price: '4,999',
-    totalTickets: 200,
-    icons: (
-      <div className="flex items-center gap-1.5 rounded-xl border border-accent/40 bg-accent/20 p-2 text-accent">
-        <Trophy className="h-4 w-4" />
-        <span className="text-xs font-black text-slate-400">+</span>
-        <Mic className="h-4 w-4" />
-        <span className="text-xs font-black text-slate-400">+</span>
-        <Star className="h-4 w-4 fill-accent" />
-      </div>
-    ),
-    features: [
-      { label: 'Badminton Access', included: true },
-      { label: 'Base Concert Access', included: true },
-      { label: 'VIP Concert Access', included: true },
-      { label: 'Front Row Seats', included: true },
-    ],
-  },
-];
+const DISPLAY_ORDER: PassTierKey[] = ['rhythm', 'champion', 'elite'];
 
 export default function Pricing() {
+  const passes = DISPLAY_ORDER.map((slug) => VARIANTS[slug]);
+
   return (
     <section id="tickets" className="relative overflow-hidden bg-linear-to-b from-[#090d0b] via-[#0d1410] to-[#080c0a] px-6 py-20 text-white md:px-12 md:py-28">
 
@@ -106,9 +55,9 @@ export default function Pricing() {
         </div>
 
         <div className="mt-16 grid gap-8 lg:grid-cols-3 lg:items-stretch">
-          {PASSES.map((pass) => (
+          {passes.map((pass) => (
             <div
-              key={pass.name}
+              key={pass.slug}
               className={`group relative flex flex-col justify-between rounded-3xl p-6 transition-all duration-300 backdrop-blur-md sm:p-8 ${
                 pass.popular
                   ? 'z-10 border-2 border-accent bg-white/3 shadow-[0_0_35px_rgba(212,242,30,0.15)]'
@@ -125,23 +74,23 @@ export default function Pricing() {
               <div>
                 <div className="border-b border-white/10 pb-6">
                   <div className="flex items-center justify-between gap-2">
-                    {pass.icons}
+                    {PASS_ICONS[pass.slug]}
                     <span className="shrink-0 rounded-xl border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-300">
                       {pass.totalTickets} Available
                     </span>
                   </div>
 
                   <h3 className="mt-4 font-primary text-2xl font-extrabold uppercase text-white">
-                    {pass.name}
+                    {pass.label}
                   </h3>
-                  
+
                   <p className="mt-1 text-xs font-bold uppercase tracking-wider text-accent">
                     {pass.tagline}
                   </p>
 
                   <div className="mt-6 flex items-baseline gap-1">
                     <span className="font-primary text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-                      PKR {pass.price}
+                      PKR {(pass.price / 100).toLocaleString()}
                     </span>
                   </div>
                   <p className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
