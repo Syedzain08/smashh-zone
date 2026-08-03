@@ -11,34 +11,49 @@ type FaqItem = {
 
 const FAQS: FaqItem[] = [
   {
-    question: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit?',
+    question: 'What dates is Smashh Zone Badminton Championship happening?',
     answer:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      "The championship runs September 5–6, 2026, at Gaddafi Stadium, Lahore. Day 1 covers group stage and quarterfinal matches, and Day 2 features the semifinals, championship final, and the Qawwali Night concert.",
   },
   {
-    question: 'Duis aute irure dolor in reprehenderit in voluptate velit?',
+    question: 'What time do gates open?',
     answer:
-      'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      'Gates open at 9:00 AM for registration, with matches starting at 10:00 AM both days. Entry is through Gate 3.',
   },
   {
-    question: 'Curabitur pretium tincidunt lacus nulla gravidas accumsan?',
+    question: "Who's performing at the concert?",
     answer:
-      'Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida.',
+      'Hasan Raheem and Young Stunners headline the Qawwali Night, kicking off around 7:30 PM on Day 2 after the championship final.',
   },
   {
-    question: 'Pellentesque habitant morbi tristique senectus et netus?',
+    question: 'Is there an age restriction?',
     answer:
-      'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ut ultrices eros, sed sodales tellus. Phasellus quis diam sed massa porta semper.',
+      "The event is open to ages 12+. If you're bringing a younger attendee, we'd advise having a guardian accompany them.",
   },
   {
-    question: 'Fusce aliquet mollis sem, at sodales magna tristique nec?',
+    question: 'Why do you need my CNIC?',
     answer:
-      'Fusce aliquet mollis sem, at sodales magna tristique nec. Proin imperdiet pretium metus, non feugiat elit rhoncus at. Integer aliquet, dui in accumsan vehicula, lorem nisi pellentesque elit.',
+      "We collect your CNIC number for identity verification tied to your ticket purchase, and so we're able to assist law enforcement in the event of a security incident at the venue. It's checked against your ticket at entry. We never use it for marketing, and it's permanently deleted two months after the event concludes.",
   },
   {
-    question: 'Vivamus elementum semper nisi, aenean vulputate eleifend?',
+    question: "What's your policy on refunds and transfers?",
     answer:
-      'Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.',
+      "All ticket sales are final. We don't offer refunds, exchanges, or cancellations for any reason — including change of mind, inability to attend, or scheduling conflicts — and this applies equally across all ticket tiers. Please double-check your tier and date before completing checkout.",
+  },
+  {
+    question: 'Can I be removed from the event?',
+    answer:
+      'Yes. Buying a ticket does not guarantee continued access — entry can be refused or a ticket revoked, without refund, if you behave in a disruptive, threatening, or unsafe manner, provide false or misleading information (including fraudulent ID or duplicated tickets), break venue rules or the law, or pose a risk to the safety of staff or other attendees.',
+  },
+  {
+    question: "What if I didn't receive my ticket after purchase?",
+    answer:
+      "Head to the \"Didn't Get Your Ticket?\" page linked in the footer, or reach out directly to support@smashhzone.com.",
+  },
+  {
+    question: "Who's organizing the event?",
+    answer:
+      'Smashh Zone is directed and managed by JSM (Jojo Sports & Management).',
   },
 ];
 
@@ -64,7 +79,7 @@ export default function FaqSection() {
             Frequently Asked
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-slate-300 md:text-base">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Find quick answers regarding tickets, entry requirements, and event policies below.
+           Find quick answers regarding tickets, entry requirements, and event policies below.
           </p>
         </div>
 

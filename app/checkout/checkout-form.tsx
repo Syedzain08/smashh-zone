@@ -46,6 +46,18 @@ const checkoutSchema = z
 type CheckoutFormValues = z.infer<typeof checkoutSchema>;
 type Variant = { label: string; price: number; tierKey: string };
 
+function formatCnic(value: string): string {
+  const digits = value.replace(/\D/g, '').slice(0, 13);
+  const part1 = digits.slice(0, 5);
+  const part2 = digits.slice(5, 12);
+  const part3 = digits.slice(12, 13);
+
+  let formatted = part1;
+  if (part2) formatted += `-${part2}`;
+  if (part3) formatted += `-${part3}`;
+  return formatted;
+}
+
 export default function CheckoutForm({ variant }: { variant: Variant }) {
   const {
     register,
@@ -99,6 +111,17 @@ export default function CheckoutForm({ variant }: { variant: Variant }) {
   const handleQuantityChange = (delta: number) => {
     const nextVal = Math.min(20, Math.max(1, selectedQuantity + delta));
     setValue('quantity', nextVal, { shouldValidate: true });
+  };
+
+  const registerCnic = (name: 'buyerCnic' | `attendees.${number}.cnic`) => {
+    const { onChange, ...rest } = register(name);
+    return {
+      ...rest,
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.value = formatCnic(e.target.value);
+        return onChange(e);
+      },
+    };
   };
 
   const onSubmit = async (data: CheckoutFormValues) => {
@@ -228,7 +251,14 @@ export default function CheckoutForm({ variant }: { variant: Variant }) {
             <input {...register('buyerPhone')} className={inputClass(!!errors.buyerPhone)} placeholder="+92 3XX XXXXXXX" />
           </Field>
           <Field label="CNIC" error={errors.buyerCnic?.message}>
-            <input {...register('buyerCnic')} className={inputClass(!!errors.buyerCnic)} placeholder="12345-1234567-1" />
+            <input
+              {...registerCnic('buyerCnic')}
+              inputMode="numeric"
+              autoComplete="off"
+              maxLength={15}
+              className={inputClass(!!errors.buyerCnic)}
+              placeholder="12345-1234567-1"
+            />
           </Field>
         </div>
       </fieldset>
@@ -286,7 +316,14 @@ export default function CheckoutForm({ variant }: { variant: Variant }) {
               <input {...register(`attendees.${index}.phone`)} className={inputClass(!!errors.attendees?.[index]?.phone)} placeholder="+92 3XX XXXXXXX" />
             </Field>
             <Field label="CNIC" error={errors.attendees?.[index]?.cnic?.message}>
-              <input {...register(`attendees.${index}.cnic`)} className={inputClass(!!errors.attendees?.[index]?.cnic)} placeholder="12345-1234567-1" />
+              <input
+                {...registerCnic(`attendees.${index}.cnic`)}
+                inputMode="numeric"
+                autoComplete="off"
+                maxLength={15}
+                className={inputClass(!!errors.attendees?.[index]?.cnic)}
+                placeholder="12345-1234567-1"
+              />
             </Field>
           </div>
         </fieldset>
