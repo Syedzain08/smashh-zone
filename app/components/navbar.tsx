@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 
 const NAV_LINKS = [
@@ -15,7 +16,7 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-
+  const pathname = usePathname();
 
   useEffect(() => {
     if (open) {
@@ -27,6 +28,29 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  const handleHashLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    setOpen(false);
+
+    if (href.includes("#")) {
+      const [targetPath, hash] = href.split("#");
+      const isSamePage = pathname === (targetPath || "/");
+
+      if (isSamePage) {
+        e.preventDefault();
+        const element = document.getElementById(hash);
+
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        } else {
+          window.history.pushState(null, "", `#${hash}`);
+        }
+      }
+    }
+  };
 
   return (
     <header className="sticky inset-x-0 top-0 z-50 w-full border-b border-white/10 bg-[#090d0b]/95 backdrop-blur-md">
@@ -50,6 +74,7 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
+              onClick={(e) => handleHashLinkClick(e, link.href)}
               className="group relative text-xs font-bold uppercase tracking-widest text-secondary/80 transition-colors hover:text-secondary"
             >
               {link.label}
@@ -60,6 +85,7 @@ export default function Navbar() {
 
         <Link
           href="/#tickets"
+          onClick={(e) => handleHashLinkClick(e, "/#tickets")}
           className="hidden items-center gap-1.5 rounded-full bg-accent px-6 py-3 text-xs font-bold uppercase tracking-widest text-black shadow-[0_0_20px_rgba(212,242,30,0.25)] transition-all duration-300 hover:scale-105 hover:bg-[#c2e01a] md:inline-flex"
         >
           Get Tickets
@@ -123,7 +149,7 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                onClick={() => setOpen(false)}
+                onClick={(e) => handleHashLinkClick(e, link.href)}
                 className="border-b border-white/10 py-4 font-primary text-3xl font-extrabold uppercase text-secondary transition-colors hover:text-accent"
               >
                 {link.label}
@@ -131,11 +157,10 @@ export default function Navbar() {
             ))}
           </div>
 
-  
           <div className="relative pb-6 pt-8">
             <Link
               href="/#tickets"
-              onClick={() => setOpen(false)}
+              onClick={(e) => handleHashLinkClick(e, "/#tickets")}
               className="flex w-full items-center justify-center gap-2 rounded-full bg-accent py-4 text-sm font-bold uppercase tracking-widest text-black shadow-[0_0_20px_rgba(212,242,30,0.3)]"
             >
               Get Tickets
