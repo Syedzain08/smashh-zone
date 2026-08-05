@@ -51,8 +51,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/artists" className="hover:text-accent transition-colors">
-                  Artists Page
+                <Link href="/event-details" className="hover:text-accent transition-colors">
+                  Event Details
                 </Link>
               </li>
               <li>

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { roboto, thirstyScript } from './fonts';
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import Footer from './components/footer'
+import Navbar from './components/navbar'
 
 if (!process.env.NEXT_PUBLIC_APP_URL) {
   throw new Error('NEXT_PUBLIC_APP_URL environment variable is not set');
@@ -55,7 +57,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <Navbar/>
         {children}
+        <Footer/>
       </body>
     </html>
   );

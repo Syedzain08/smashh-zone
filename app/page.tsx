@@ -68,6 +68,5 @@ export default function Home() {
   <Pricing />
   <VenueMap />
   <FAQ />
-  <Footer />
   </>
 }

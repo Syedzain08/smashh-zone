@@ -80,15 +80,6 @@ export default function ArtistShowcase() {
             </div>
           ))}
         </div>
-
-        <div className="mt-12 text-center">
-          <a
-            href="/artists"
-            className="inline-block w-fit rounded-full bg-secondary px-8 py-4 text-sm font-semibold text-[#0a0f0d] transition-all hover:scale-105"
-          >
-            Meet The Full Lineup →
-          </a>
-        </div>
       </div>
     </section>
   );

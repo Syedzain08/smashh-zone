@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Navbar from '../components/navbar';
-import Footer from '../components/footer';
 import PolicySection from '../components/policy-section';
 
 const LAST_UPDATED = 'July 30, 2026';
@@ -185,7 +184,6 @@ export default function PrivacyPolicyPage() {
         </section>
       </main>
 
-      <Footer />
     </>
   );
 }

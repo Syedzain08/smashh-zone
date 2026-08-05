@@ -1,5 +1,9 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link'
+import { useState } from 'react';
+import { Loader2 } from 'lucide-react';
 import {
   Carousel,
   CarouselContent,
@@ -11,6 +15,8 @@ import {
 const images = ['/bg-img.jpg', '/bg-secondary.jpg'];
 
 export default function About() {
+  const [isNavigating, setIsNavigating] = useState(false);
+
   return (
     <section id='about-teaser' className="relative overflow-hidden bg-[#0a0f0d] px-6 py-20 text-white md:px-12 md:py-28">
       <div 
@@ -59,9 +65,26 @@ export default function About() {
           </p>
           <Link
             href="/about"
-            className="mt-8 inline-block rounded-full bg-accent px-6 py-3 text-sm font-bold uppercase text-black transition-all hover:scale-105 hover:bg-[#c2e01a] md:px-8 md:py-4"
+            aria-disabled={isNavigating}
+            onClick={(e) => {
+              if (isNavigating) {
+                e.preventDefault();
+                return;
+              }
+              setIsNavigating(true);
+            }}
+            className={`mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-bold uppercase text-black transition-all hover:scale-105 hover:bg-[#c2e01a] md:px-8 md:py-4 ${
+              isNavigating ? 'pointer-events-none opacity-70' : ''
+            }`}
           >
-            Learn More →
+            {isNavigating ? (
+              <>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Loading&hellip;
+              </>
+            ) : (
+              <>Learn More →</>
+            )}
           </Link>
         </div>
       </div>

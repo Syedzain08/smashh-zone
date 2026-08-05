@@ -1,10 +1,8 @@
 import Image from 'next/image';
-import Navbar from './navbar';
 
 
 export default function Hero() {
   return (<>
-    <Navbar></Navbar>
     <section id="hero" className="relative h-screen w-full">
       <Image
         src="/bg-secondary.jpg"

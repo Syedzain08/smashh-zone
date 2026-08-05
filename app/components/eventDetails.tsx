@@ -1,6 +1,8 @@
 'use client';
 
-import { useSyncExternalStore } from 'react';
+import Link from 'next/link';
+import { useState, useSyncExternalStore } from 'react';
+import { ArrowRight, Loader2 } from 'lucide-react';
 
 const EVENT_DATE = new Date('2026-09-05T09:00:00+05:00'); 
 
@@ -99,6 +101,8 @@ export default function EventDetails() {
     getServerSnapshot
   );
 
+  const [isNavigating, setIsNavigating] = useState(false);
+
   return (
     <section id='event-details' className="relative overflow-hidden bg-linear-to-b from-[#090d0b] via-[#0f1712] to-[#090d0b] px-6 py-20 text-white md:px-12 md:py-28">
       <div
@@ -164,6 +168,36 @@ export default function EventDetails() {
             </div>
           ))}
         </div>
+
+        <div className="mt-10 flex justify-center">
+          <Link
+            href="/event-details"
+            aria-disabled={isNavigating}
+            onClick={(e) => {
+              if (isNavigating) {
+                e.preventDefault();
+                return;
+              }
+              setIsNavigating(true);
+            }}
+            className={`inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-4 text-xs font-bold uppercase tracking-widest text-white transition-all duration-300 hover:border-accent/50 hover:bg-white/10 ${
+              isNavigating ? 'pointer-events-none opacity-70' : ''
+            }`}
+          >
+            {isNavigating ? (
+              <>
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                Loading&hellip;
+              </>
+            ) : (
+              <>
+                Full Schedule &amp; Categories
+                <ArrowRight className="h-3.5 w-3.5" />
+              </>
+            )}
+          </Link>
+        </div>
+
         <div className="mt-12 flex flex-col items-center justify-center gap-y-4 text-xs font-medium uppercase tracking-widest text-slate-400 sm:flex-row sm:gap-x-8 sm:gap-y-2">
           <div className="flex items-start gap-2 text-left sm:items-center">
             <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent sm:mt-0" />
