@@ -45,9 +45,6 @@ export default function About() {
             <CarouselNext className="right-4 hidden border-white/10 bg-black/60 text-white backdrop-blur-md hover:bg-black/80 md:flex" />
           </Carousel>
 
-          <div className="absolute top-4 left-4 rounded-2xl border border-white/10 bg-black/60 p-2 backdrop-blur-md shadow-lg">
-            <Image src="/logo.png" alt="Smash Zone" width={56} height={56} />
-          </div>
         </div>
 
         <div>
