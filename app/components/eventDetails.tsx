@@ -72,7 +72,7 @@ const SCHEDULE = [
     events: [
       { time: '10:00 AM', label: 'Semifinal Battles' },
       { time: '04:00 PM', label: 'Championship Final' },
-      { time: '07:30 PM', label: 'Qawwali Night & Closing' },
+      { time: '07:30 PM', label: 'Concert Night & Closing' },
     ],
   },
 ];
@@ -201,7 +201,7 @@ export default function EventDetails() {
         <div className="mt-12 flex flex-col items-center justify-center gap-y-4 text-xs font-medium uppercase tracking-widest text-slate-400 sm:flex-row sm:gap-x-8 sm:gap-y-2">
           <div className="flex items-start gap-2 text-left sm:items-center">
             <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent sm:mt-0" />
-            <span>Ages 12+</span>
+            <span>Ages 15+</span>
           </div>
           <div className="flex items-start gap-2 text-left sm:items-center">
             <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent sm:mt-0" />

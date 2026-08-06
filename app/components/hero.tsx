@@ -30,24 +30,58 @@ export default function Hero() {
         </g>
       </svg>
 
-      {/* Racket - Upper Right */}
-      <svg
-        className="racket-float pointer-events-none absolute -right-16 top-[6%] h-[52vh] w-auto opacity-[0.18] md:right-[2%]"
-        viewBox="0 0 200 420"
-        fill="none"
-      >
-        <ellipse cx="100" cy="110" rx="82" ry="100" stroke="#d4f21e" strokeWidth="6" />
-        <ellipse cx="100" cy="110" rx="82" ry="100" stroke="#d4f21e" strokeWidth="1" strokeOpacity="0.5" />
-        {Array.from({ length: 9 }).map((_, i) => (
-          <line key={`v${i}`} x1={38 + i * 15.5} y1="24" x2={38 + i * 15.5} y2="196" stroke="#d4f21e" strokeWidth="1" strokeOpacity="0.5" />
-        ))}
-        {Array.from({ length: 11 }).map((_, i) => (
-          <line key={`h${i}`} x1="22" y1={26 + i * 15.5} x2="178" y2={26 + i * 15.5} stroke="#d4f21e" strokeWidth="1" strokeOpacity="0.5" />
-        ))}
-        <path d="M100 210 L92 210 L82 400 Q82 414 100 414 Q118 414 118 400 L108 210 Z" stroke="#d4f21e" strokeWidth="6" fill="#050806" />
-      </svg>
+        {/* Badminton Racket - Upper Right */}
+        <svg
+          className="racket-float pointer-events-none absolute -right-16 top-[6%] h-[52vh] w-auto opacity-[0.18] md:right-[2%]"
+          viewBox="0 0 200 500"
+          fill="none"
+        >
+          <path 
+            d="M 100,10 C 155,10 168,50 168,105 C 168,160 148,195 100,195 C 52,195 32,160 32,105 C 32,50 45,10 100,10 Z" 
+            stroke="#d4f21e" 
+            strokeWidth="3.5" 
+          />
+          
+          {Array.from({ length: 15 }).map((_, i) => (
+            <line 
+              key={`v${i}`} 
+              x1={40 + i * 8.5} 
+              y1="15" 
+              x2={40 + i * 8.5} 
+              y2="190" 
+              stroke="#d4f21e" 
+              strokeWidth="0.75" 
+              strokeOpacity="0.45" 
+            />
+          ))}
+          
+          {Array.from({ length: 17 }).map((_, i) => (
+            <line 
+              key={`h${i}`} 
+              x1="36" 
+              y1={20 + i * 10} 
+              x2="164" 
+              y2={20 + i * 10} 
+              stroke="#d4f21e" 
+              strokeWidth="0.75" 
+              strokeOpacity="0.45" 
+            />
+          ))}
 
-      {/* Shuttlecock - Lower Left */}
+          <path d="M 74,188 L 100,225 L 126,188" stroke="#d4f21e" strokeWidth="3" fill="none" />
+
+          <line x1="100" y1="225" x2="100" y2="380" stroke="#d4f21e" strokeWidth="3.5" />
+
+          <path d="M 94,380 L 106,380 L 108,395 L 92,395 Z" fill="#d4f21e" />
+
+          <path 
+            d="M 92,395 L 108,395 L 106,485 Q 106,492 100,492 Q 94,492 94,485 Z" 
+            stroke="#d4f21e" 
+            strokeWidth="3" 
+            fill="#050806" 
+          />
+        </svg>
+
       <svg
         className="shuttle-float pointer-events-none absolute -left-6 bottom-[14%] h-[26vh] w-auto opacity-[0.22] md:left-[4%]"
         viewBox="0 0 160 220"

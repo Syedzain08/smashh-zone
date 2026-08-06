@@ -166,3 +166,31 @@
     animation: none !important;
   }
 }
+
+@keyframes menu-drop {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+.menu-drop {
+  animation: menu-drop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes menu-link-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.menu-link-in {
+  opacity: 0;
+  animation: menu-link-in 0.4s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-drop,
+  .menu-link-in {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

@@ -28,7 +28,7 @@ const FAQS: FaqItem[] = [
   {
     question: 'Is there an age restriction?',
     answer:
-      "The event is open to ages 12+. If you're bringing a younger attendee, we'd advise having a guardian accompany them.",
+      "The event is open to ages 15+. If you're bringing a younger attendee, we'd advise having a guardian accompany them.",
   },
   {
     question: 'Why do you need my CNIC?',

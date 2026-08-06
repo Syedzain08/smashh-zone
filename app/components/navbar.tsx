@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 
@@ -56,14 +55,6 @@ export default function Navbar() {
     <header className="sticky inset-x-0 top-0 z-50 w-full border-b border-white/10 bg-[#090d0b]/95 backdrop-blur-md">
       <nav className="flex items-center justify-between px-6 py-5 md:px-12 md:py-6">
         <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/logo.svg"
-            alt="Smashh Zone Logo"
-            width={36}
-            height={36}
-            className="h-8 w-auto md:h-9"
-            priority
-          />
           <span className="font-display text-2xl text-secondary transition-colors hover:text-accent md:text-3xl">
             Smashh <span className="text-accent">zone</span>
           </span>
@@ -115,60 +106,54 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {open && (
-        <div className="fixed inset-0 z-40 flex h-screen w-screen flex-col overflow-y-auto bg-[#090d0b] px-6 py-6 md:hidden">
-          <div
-            className="pointer-events-none absolute -top-32 left-1/2 h-120 w-xl -translate-x-1/2 rounded-full opacity-20 blur-3xl"
-            style={{
-              background:
-                "radial-gradient(circle, #d4f21e 0%, transparent 70%)",
-            }}
-          />
+        {open && (
+      <div className="menu-drop fixed inset-0 z-40 flex h-screen w-screen flex-col overflow-y-auto bg-[#090d0b] px-6 py-6 md:hidden">
+        <div
+          className="pointer-events-none absolute -top-32 left-1/2 h-120 w-xl -translate-x-1/2 rounded-full opacity-20 blur-3xl"
+          style={{
+            background:
+              "radial-gradient(circle, #d4f21e 0%, transparent 70%)",
+          }}
+        />
 
-          <div className="flex items-center justify-between">
-            <Link
-              href="/"
-              onClick={() => setOpen(false)}
-              className="flex items-center gap-3"
-            >
-              <Image
-                src="/logo.svg"
-                alt="Smashh Zone Logo"
-                width={32}
-                height={32}
-                className="h-8 w-auto"
-              />
-              <span className="font-display text-2xl text-secondary">
-                Smashh <span className="text-accent">zone</span>
-              </span>
-            </Link>
-          </div>
-
-          <div className="relative mt-12 flex flex-1 flex-col justify-center gap-1">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                onClick={(e) => handleHashLinkClick(e, link.href)}
-                className="border-b border-white/10 py-4 font-primary text-3xl font-extrabold uppercase text-secondary transition-colors hover:text-accent"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          <div className="relative pb-6 pt-8">
-            <Link
-              href="/#tickets"
-              onClick={(e) => handleHashLinkClick(e, "/#tickets")}
-              className="flex w-full items-center justify-center gap-2 rounded-full bg-accent py-4 text-sm font-bold uppercase tracking-widest text-black shadow-[0_0_20px_rgba(212,242,30,0.3)]"
-            >
-              Get Tickets
-              <ArrowUpRight className="h-4 w-4" />
-            </Link>
-          </div>
+        <div className="flex items-center justify-between">
+          <Link
+            href="/"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-3"
+          >
+            <span className="font-display text-2xl text-secondary">
+              Smashh <span className="text-accent">zone</span>
+            </span>
+          </Link>
         </div>
-      )}
+
+        <div className="relative mt-12 flex flex-1 flex-col justify-center gap-1">
+          {NAV_LINKS.map((link, i) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              onClick={(e) => handleHashLinkClick(e, link.href)}
+              className="menu-link-in border-b border-white/10 py-4 font-primary text-3xl font-extrabold uppercase text-secondary transition-colors hover:text-accent"
+              style={{ animationDelay: `${0.15 + i * 0.06}s` }}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+
+        <div className="menu-link-in relative pb-6 pt-8" style={{ animationDelay: `${0.15 + NAV_LINKS.length * 0.06}s` }}>
+          <Link
+            href="/#tickets"
+            onClick={(e) => handleHashLinkClick(e, "/#tickets")}
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-accent py-4 text-sm font-bold uppercase tracking-widest text-black shadow-[0_0_20px_rgba(212,242,30,0.3)]"
+          >
+            Get Tickets
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+    )}
     </header>
   );
 }

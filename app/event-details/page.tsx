@@ -8,23 +8,13 @@ import {
   MapPin,
   ArrowRight,
 } from 'lucide-react';
-import type { Metadata } from "next";
-
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Event Details',
+  title: 'Event Details | Smashh Zone Badminton Championship',
   description:
     'Full schedule and match categories for the Smashh Zone Badminton Championship — U17, U19, and Open — Sep 5–6, 2026 at Gaddafi Stadium, Lahore.',
 };
-
-/**
- * ────────────────────────────────────────────────────────────────
- * EDIT ME: category + schedule data
- * Anything marked "TBA" is a placeholder — swap in your real
- * times/courts once the draw is finalized. Nothing here is fetched
- * from anywhere, it's just plain data below, safe to hand-edit.
- * ────────────────────────────────────────────────────────────────
- */
 
 type Category = {
   code: string;
@@ -40,29 +30,29 @@ const CATEGORIES: Category[] = [
   {
     code: 'U17',
     name: 'Under-17',
-    eligibility: 'Players under 17 as of Sep 5, 2026',
-    format: 'TBA — singles / doubles', // EDIT: confirm format
+    eligibility: 'Ages 15 to 16 (Under 17 as of Sep 5, 2026)',
+    format: 'Singles, Doubles & Mixed',
     day: 'Day 01 · Sep 5',
-    window: 'TBA', // EDIT: confirm time slot
-    note: 'Age proof (CNIC/B-Form) required at check-in',
+    window: 'Starts 10:00 AM',
+    note: 'Original CNIC or B-Form required at check-in for age verification',
   },
   {
     code: 'U19',
     name: 'Under-19',
-    eligibility: 'Players under 19 as of Sep 5, 2026',
-    format: 'TBA — singles / doubles', // EDIT: confirm format
+    eligibility: 'Ages 15 to 18 (Under 19 as of Sep 5, 2026)',
+    format: 'Singles, Doubles & Mixed',
     day: 'Day 01 · Sep 5',
-    window: 'TBA', // EDIT: confirm time slot
-    note: 'Age proof (CNIC/B-Form) required at check-in',
+    window: 'Starts 10:00 AM',
+    note: 'Original CNIC or B-Form required at check-in for age verification',
   },
   {
     code: 'OPEN',
-    name: 'Open',
-    eligibility: 'All ages, mixed field',
-    format: 'TBA — singles / doubles / mixed', // EDIT: confirm format
-    day: 'Day 02 · Sep 6',
-    window: 'TBA', // EDIT: confirm time slot
-    note: 'No age restriction on entry',
+    name: 'Open Category',
+    eligibility: 'Ages 15 and above (No upper age limit)',
+    format: 'Singles, Doubles & Mixed',
+    day: 'Day 01 · Sep 5',
+    window: 'Starts 10:00 AM',
+    note: 'Open to all skill levels meeting the 15+ age requirement',
   },
 ];
 
@@ -70,13 +60,13 @@ const SCHEDULE = [
   {
     day: 'Day 01',
     date: 'Sep 5, 2026',
-    title: 'Championship Rounds',
+    title: 'Group Stage & Elimination Rounds',
     events: [
-      { time: '09:00 AM', label: 'Gates Open & Registration' },
-      { time: '10:00 AM', label: 'Group Stage Matches' },
-      { time: 'TBA', label: 'U17 Category Matches' }, // EDIT
-      { time: 'TBA', label: 'U19 Category Matches' }, // EDIT
-      { time: '06:00 PM', label: 'Quarterfinal Showdowns' },
+      { time: '09:00 AM', label: 'Gates Open & Player Registration' },
+      { time: '10:00 AM', label: 'U17 Category Matches (Singles, Doubles, Mixed)' },
+      { time: '10:00 AM', label: 'U19 Category Matches (Singles, Doubles, Mixed)' },
+      { time: '10:00 AM', label: 'Open Category Matches (Singles, Doubles, Mixed)' },
+      { time: '06:00 PM', label: 'Quarterfinal Showdowns (All Categories)' },
     ],
   },
   {
@@ -84,17 +74,16 @@ const SCHEDULE = [
     date: 'Sep 6, 2026',
     title: 'Finals + Concert Night',
     events: [
-      { time: '10:00 AM', label: 'Semifinal Battles' },
-      { time: 'TBA', label: 'Open Category Matches' }, // EDIT
-      { time: '04:00 PM', label: 'Championship Final' },
-      { time: '07:30 PM', label: 'Qawwali Night & Closing' },
+      { time: '10:00 AM', label: 'Semifinal Battles (All Categories)' },
+      { time: '04:00 PM', label: 'Championship Finals & Podium Ceremony' },
+      { time: '07:30 PM', label: 'Qawwali Night & Closing Ceremony' },
     ],
   },
 ];
 
 function CategoryCard({ category }: { category: Category }) {
   return (
-    <div className="group relative flex flex-col rounded-3xl border border-white/10 bg-white/3 p-6 sm:p-8 backdrop-blur-md transition-all duration-300 hover:border-accent/40 hover:bg-white/5">
+    <div className="group relative flex flex-col rounded-3xl border border-white/10 bg-white/3 p-6 backdrop-blur-md transition-all duration-300 hover:border-accent/40 hover:bg-white/5 sm:p-8">
       <div className="flex items-start justify-between gap-4">
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-accent/30 bg-accent/10 text-accent">
           <Users className="h-5 w-5" />
@@ -122,9 +111,7 @@ function CategoryCard({ category }: { category: Category }) {
         </li>
         <li className="flex items-start gap-2.5">
           <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-          <span className={category.window === 'TBA' ? 'italic text-slate-400' : ''}>
-            {category.window}
-          </span>
+          <span>{category.window}</span>
         </li>
       </ul>
 
@@ -139,40 +126,37 @@ function CategoryCard({ category }: { category: Category }) {
 
 export default function EventDetailsPage() {
   return (
-    <main className="min-h-screen bg-[#050806] text-white pt-28 pb-20 px-6 md:px-12">
+    <main className="min-h-screen bg-[#050806] px-6 pb-20 pt-28 text-white md:px-12">
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -left-40 h-96 w-96 rounded-full bg-accent/10 blur-3xl" />
-        <div className="absolute bottom-1/3 -right-40 h-96 w-96 rounded-full bg-accent/5 blur-3xl" />
+        <div className="absolute -left-40 top-1/4 h-96 w-96 rounded-full bg-accent/10 blur-3xl" />
+        <div className="absolute -right-40 bottom-1/3 h-96 w-96 rounded-full bg-accent/5 blur-3xl" />
       </div>
 
       <div className="relative mx-auto max-w-6xl">
-        {/* Intro */}
-        <section className="text-center max-w-3xl mx-auto py-12">
-          <span className="text-xs font-bold uppercase tracking-widest text-accent bg-accent/10 px-4 py-1.5 rounded-full border border-accent/20">
+        <section className="mx-auto max-w-3xl py-12 text-center">
+          <span className="rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-accent">
             Sep 5–6, 2026 · Gaddafi Stadium, Lahore
           </span>
-          <h1 className="mt-6 font-primary text-4xl sm:text-6xl font-extrabold uppercase tracking-tight">
-            Event <span className="text-accent font-display font-normal lowercase">Details</span>
+          <h1 className="mt-6 font-primary text-4xl font-extrabold uppercase tracking-tight sm:text-6xl">
+            Event <span className="font-display font-normal lowercase text-accent">Details</span>
           </h1>
-          <p className="mt-6 text-slate-400 text-sm md:text-base leading-relaxed">
-            Everything you need to know before you step onto Gaddafi Stadium grounds —
-            match categories, the full two-day timeline, and what to bring for check-in.
+          <p className="mt-6 text-sm leading-relaxed text-slate-400 md:text-base">
+            Everything you need to know before stepping onto Gaddafi Stadium grounds — tournament match categories, the full schedule, and entry requirements.
           </p>
         </section>
 
-        {/* Categories */}
         <section className="my-16">
           <div className="flex items-end justify-between gap-4 border-b border-white/10 pb-6">
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-accent">
-                Compete
+                Tournament Categories
               </span>
-              <h2 className="mt-1 font-primary text-2xl sm:text-3xl font-extrabold uppercase">
-                Match Categories
+              <h2 className="mt-1 font-primary text-2xl font-extrabold uppercase sm:text-3xl">
+                Match Divisions
               </h2>
             </div>
-            <p className="hidden sm:block max-w-xs text-right text-xs text-slate-400">
-              Three categories across two days — check your age bracket before you register.
+            <p className="hidden max-w-xs text-right text-xs text-slate-400 sm:block">
+              All categories feature Singles, Doubles, and Mixed events. Minimum age 15+.
             </p>
           </div>
 
@@ -183,13 +167,12 @@ export default function EventDetailsPage() {
           </div>
         </section>
 
-        {/* Full schedule */}
         <section className="my-16">
           <div className="border-b border-white/10 pb-6">
             <span className="text-xs font-bold uppercase tracking-widest text-accent">
               Run of Show
             </span>
-            <h2 className="mt-1 font-primary text-2xl sm:text-3xl font-extrabold uppercase">
+            <h2 className="mt-1 font-primary text-2xl font-extrabold uppercase sm:text-3xl">
               Full Schedule
             </h2>
           </div>
@@ -198,7 +181,7 @@ export default function EventDetailsPage() {
             {SCHEDULE.map((day) => (
               <div
                 key={day.day}
-                className="group relative rounded-3xl border border-white/10 bg-white/3 p-6 sm:p-8 backdrop-blur-md transition-all duration-300 hover:border-accent/40 hover:bg-white/5"
+                className="group relative rounded-3xl border border-white/10 bg-white/3 p-6 backdrop-blur-md transition-all duration-300 hover:border-accent/40 hover:bg-white/5 sm:p-8"
               >
                 <div className="flex items-start justify-between gap-4 border-b border-white/10 pb-5">
                   <div>
@@ -220,11 +203,7 @@ export default function EventDetailsPage() {
                       key={event.label}
                       className="flex items-center justify-between text-sm text-slate-300 transition-colors group-hover:text-white"
                     >
-                      <span
-                        className={`font-primary font-bold tabular-nums ${
-                          event.time === 'TBA' ? 'italic text-slate-500' : 'text-accent'
-                        }`}
-                      >
+                      <span className="font-primary font-bold tabular-nums text-accent">
                         {event.time}
                       </span>
                       <span className="font-medium text-slate-200">{event.label}</span>
@@ -236,25 +215,25 @@ export default function EventDetailsPage() {
           </div>
         </section>
 
-        {/* Entry requirements */}
-        <section className="my-16 rounded-3xl border border-accent/30 bg-accent/5 p-8 md:p-12 backdrop-blur-md">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <section className="my-16 rounded-3xl border border-accent/30 bg-accent/5 p-8 backdrop-blur-md md:p-12">
+          <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
             <div className="max-w-xl">
-              <div className="flex items-center gap-2 text-accent text-xs font-bold uppercase tracking-widest">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent">
                 <ShieldCheck className="h-4 w-4" />
                 <span>Before You Arrive</span>
               </div>
-              <h2 className="mt-3 text-2xl md:text-3xl font-extrabold uppercase">
-                What To Bring
+              <h2 className="mt-3 text-2xl font-extrabold uppercase md:text-3xl">
+                Check-In Guidelines
               </h2>
-              <ul className="mt-4 flex flex-col gap-2 text-xs md:text-sm text-slate-300 leading-relaxed">
-                <li>• Your digital ticket QR code, matched to your CNIC</li>
-                <li>• CNIC or B-Form for age verification (U17 / U19 entrants)</li>
-                <li>• Entry via Gate 3, from 9:00 AM both days</li>
+              <ul className="mt-4 flex flex-col gap-2 text-xs leading-relaxed text-slate-300 md:text-sm">
+                <li>• Minimum age requirement for all participants and spectators is 15 years.</li>
+                <li>• Digital ticket QR code, matched to your CNIC.</li>
+                <li>• CNIC or B-Form required for all U17 and U19 category players.</li>
+                <li>• Entry via Gate 3 starting at 9:00 AM both days.</li>
               </ul>
             </div>
 
-            <div className="shrink-0 flex flex-col gap-3">
+            <div className="flex shrink-0 flex-col gap-3">
               <Link
                 href="/#tickets"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-bold text-black transition-all hover:scale-105"
