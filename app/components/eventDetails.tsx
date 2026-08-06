@@ -119,7 +119,7 @@ export default function EventDetails() {
             Two Days On The Clock
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-sm text-slate-300 md:text-base leading-relaxed">
-            Championship badminton by day, Qawwali Night to close it out. Here&apos;s how it plays out on court &mdash; and how long you have to grab a seat.
+            Championship badminton by day, Concert Night to close it out. Here&apos;s how it plays out on court &mdash; and how long you have to grab a seat.
           </p>
         </div>
         <div className="mx-auto mt-12 flex w-fit items-center justify-center gap-2 rounded-3xl border border-white/10 bg-white/3 p-4 sm:gap-4 sm:p-6 md:p-8 backdrop-blur-md shadow-2xl">
@@ -201,7 +201,7 @@ export default function EventDetails() {
         <div className="mt-12 flex flex-col items-center justify-center gap-y-4 text-xs font-medium uppercase tracking-widest text-slate-400 sm:flex-row sm:gap-x-8 sm:gap-y-2">
           <div className="flex items-start gap-2 text-left sm:items-center">
             <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent sm:mt-0" />
-            <span>Ages 12+ · Under 18 with guardian</span>
+            <span>Ages 12+</span>
           </div>
           <div className="flex items-start gap-2 text-left sm:items-center">
             <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent sm:mt-0" />

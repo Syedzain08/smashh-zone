@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Checkout | Smashh Zone',
+  title: 'Checkout',
   robots: {
     index: false,
     follow: false,

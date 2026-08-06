@@ -1,14 +1,18 @@
 import Link from 'next/link';
-import Navbar from '../components/navbar';
 import PolicySection from '../components/policy-section';
+import type { Metadata } from "next";
 
 const LAST_UPDATED = 'July 30, 2026';
+
+
+export const metadata: Metadata = {
+  title: 'Terms & Conditions',
+  description: 'Terms and conditions for ticket purchases and website use for Smashh Zone Badminton Championship at Gaddafi Stadium, Lahore.',
+};
 
 export default function TermsPage() {
   return (
     <>
-      <Navbar />
-
       <main className="relative overflow-hidden bg-[#0a0f0d] text-white">
         <div
           className="pointer-events-none absolute -top-1/4 left-1/2 h-96 w-xl -translate-x-1/2 rounded-full opacity-15 blur-3xl"
@@ -26,11 +30,12 @@ export default function TermsPage() {
             <p className="mt-4 text-sm text-slate-400">
               Last updated: {LAST_UPDATED}
             </p>
-            <p className="mt-6 max-w-xl text-sm leading-relaxed text-slate-300 md:text-base">
-              This website (smashhzone.com) is owned and operated by JSM (Jojo Sports
-              &amp; Management). Smashh Zone is an event produced and managed by JSM,
-              held at Gaddafi Stadium, Lahore.
-            </p>
+              <p className="mt-6 max-w-xl text-sm leading-relaxed text-slate-300 md:text-base">
+            This website (smashhzone.com) is owned and operated by JSM (Jojo Sports
+            &amp; Management), registered at House No. 7, P Block, Marghzar Colony, Iqbal Town,
+            Lahore, Pakistan. Smashh Zone is an event produced and managed by JSM,
+            held at Gaddafi Stadium, Lahore.
+          </p>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-300 md:text-base">
               By visiting this site and/or purchasing a ticket, you agree to be bound
               by the terms below.
@@ -108,14 +113,24 @@ export default function TermsPage() {
                 applicable law. It is your responsibility to ensure you have selected
                 the correct ticket tier and date before completing your purchase.
               </p>
-              <p>
-                Payments are processed through Safepay. We do not collect or store your
-                payment card details — see our{' '}
-                <Link href="/privacy-policy" className="text-accent hover:underline">
-                  Privacy Policy
-                </Link>{' '}
-                for details.
-              </p>
+             <p>
+              Payments are processed through Safepay. We do not collect or store your
+            payment card details — see our{' '}
+            <Link href="/privacy-policy" className="text-accent hover:underline">
+              Privacy Policy
+            </Link>{' '}
+            for details.
+          </p>
+          <p>
+            For complaints or disputes related to your order, see our{' '}
+            <Link href="/#faq" className="text-accent hover:underline">
+              FAQ
+            </Link>{' '}
+            or contact{' '}
+            <Link href="mailto:support@smashhzone.com" className="text-accent hover:underline">
+              support@smashhzone.com
+            </Link>.
+          </p>
             </PolicySection>
 
             <PolicySection number="04" title="Entry, Conduct & Right to Refuse or Revoke Access">

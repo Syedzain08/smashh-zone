@@ -75,7 +75,7 @@ export default function Navbar() {
               key={link.label}
               href={link.href}
               onClick={(e) => handleHashLinkClick(e, link.href)}
-              className="group relative text-xs font-bold uppercase tracking-widest text-secondary/80 transition-colors hover:text-secondary"
+              className="group relative text-sm font-bold uppercase tracking-widest text-secondary/80 transition-colors hover:text-secondary"
             >
               {link.label}
               <span className="absolute -bottom-1.5 left-1/2 h-px w-0 -translate-x-1/2 bg-accent transition-all duration-300 group-hover:w-full" />

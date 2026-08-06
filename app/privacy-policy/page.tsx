@@ -1,14 +1,17 @@
 import Link from 'next/link';
-import Navbar from '../components/navbar';
 import PolicySection from '../components/policy-section';
+import type { Metadata } from "next";
 
 const LAST_UPDATED = 'July 30, 2026';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  description: 'How Smashh Zone collects, uses, and protects your personal data when you purchase tickets for the Badminton Championship at Gaddafi Stadium, Lahore.',
+};
 
 export default function PrivacyPolicyPage() {
   return (
     <>
-      <Navbar />
-
       <main className="relative overflow-hidden bg-[#0a0f0d] text-white">
         <div
           className="pointer-events-none absolute -top-1/4 left-1/2 h-96 w-xl -translate-x-1/2 rounded-full opacity-15 blur-3xl"
@@ -27,8 +30,9 @@ export default function PrivacyPolicyPage() {
             <p className="mt-4 text-sm text-slate-400">
               Last updated: {LAST_UPDATED}
             </p>
-            <p className="mt-6 max-w-xl text-sm leading-relaxed text-slate-300 md:text-base">
-              Smashh Zone is produced and operated by JSM (Jojo Sports &amp; Management).
+              <p className="mt-6 max-w-xl text-sm leading-relaxed text-slate-300 md:text-base">
+              Smashh Zone is produced and operated by JSM (Jojo Sports &amp; Management),
+              registered at House No. 7, P Block, Marghazar Colony, Iqbal Town, Lahore, Pakistan.
               This page explains what personal data we collect through smashhzone.com,
               why we collect it, how long we keep it, and what happens to it.
             </p>

@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { Trophy, Music, ShieldCheck, MapPin, ArrowRight } from 'lucide-react';
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: 'About | Smashh Zone',
+
+export const metadata: Metadata = {
+  title: 'About',
   description: 'Learn about Smashh Zone — Lahore’s premier badminton championship and live music festival managed by JSM.',
 };
 
@@ -23,8 +25,7 @@ export default function AboutPage() {
             Where High-Octane Sport Meets <span className="text-accent font-display font-normal">Live Music</span>
           </h1>
           <p className="mt-6 text-slate-400 text-sm md:text-base leading-relaxed">
-            Smashh Zone is Lahore’s premier sports-entertainment festival bringing top-tier badminton athletes and powerhouse musical artists onto one legendary stage at Gaddafi Stadium.
-          </p>
+          Smashh Zone is Lahore&apos;s premier sports-entertainment festival — an open badminton championship bringing players from across the city together with powerhouse musical artists on one legendary stage at Gaddafi Stadium.          </p>
         </section>
 
     
@@ -33,7 +34,7 @@ export default function AboutPage() {
             <Trophy className="h-10 w-10 text-accent mb-4" />
             <h3 className="text-lg font-bold">Championship Badminton</h3>
             <p className="mt-2 text-xs text-slate-400 leading-relaxed">
-              Witness elite athletes battle it out in high-stakes matches designed to keep you on the edge of your seat.
+              Watch registered players compete in high-stakes matches designed to keep you on the edge of your seat.
             </p>
           </div>
 
@@ -41,7 +42,7 @@ export default function AboutPage() {
             <Music className="h-10 w-10 text-accent mb-4" />
             <h3 className="text-lg font-bold">Live Concerts</h3>
             <p className="mt-2 text-xs text-slate-400 leading-relaxed">
-              Feel the energy soar as electrifying musical artists perform live sets alongside the tournament action.
+              Feel the energy soar as electrifying musical artists perform live sets after the tournament action.
             </p>
           </div>
 
@@ -66,13 +67,13 @@ export default function AboutPage() {
                 Directed & Managed by <span className="text-accent">JSM</span>
               </h2>
               <p className="mt-3 text-xs md:text-sm text-slate-300 leading-relaxed">
-                Organized by <strong className="text-white">JSM - JOJO Sports & Management</strong>, Smashh Zone sets a new benchmark for professional sports event execution, seamlessly combining top-tier athletic competition with unforgettable spectator entertainment.
+                Organized by <strong className="text-white">JSM - JOJO Sports & Management</strong>, Smashh Zone sets a new benchmark for professional sports event execution, seamlessly combining competitive badminton with unforgettable spectator entertainment
               </p>
             </div>
 
             <div className="shrink-0">
               <Link
-                href="/artists"
+                href="/#artist-showcase"
                 className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-bold text-slate-950 transition-all hover:scale-105"
               >
                 Explore Lineup

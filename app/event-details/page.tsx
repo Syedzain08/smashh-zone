@@ -8,9 +8,11 @@ import {
   MapPin,
   ArrowRight,
 } from 'lucide-react';
+import type { Metadata } from "next";
 
-export const metadata = {
-  title: 'Event Details | Smashh Zone',
+
+export const metadata: Metadata = {
+  title: 'Event Details',
   description:
     'Full schedule and match categories for the Smashh Zone Badminton Championship — U17, U19, and Open — Sep 5–6, 2026 at Gaddafi Stadium, Lahore.',
 };

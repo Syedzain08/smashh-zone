@@ -23,14 +23,14 @@ export const metadata: Metadata = {
     description: 'Get your tickets now.',
     url: '/',
     siteName: 'Smashh Zone',
-    images: [{ url: '/bg-img.jpg', width: 1200, height: 630 }],
+    images: [{ url: '/share-banner.png', width: 1200, height: 630 }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Smashh Zone Badminton Championship',
     description: 'Get your tickets now.',
-    images: ['/bg-img.jpg'],
+    images: ['/share-banner.png'],
   },
 };
 
@@ -44,7 +44,7 @@ export default function RootLayout({
     '@type': 'Organization',
     name: 'Smashh Zone',
     url: baseUrl,
-    logo: `${baseUrl}/logo.png`,
+    logo: `${baseUrl}/logo.svg`,
   };
 
   return (

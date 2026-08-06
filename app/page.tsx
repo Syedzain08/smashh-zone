@@ -7,8 +7,7 @@ import UrgencyBanner from './components/urgencyBanner'
 import Pricing from './components/pricing'
 import VenueMap from './components/venueMap'
 import FAQ from './components/faq'
-import Footer from './components/footer'
-import { VARIANTS } from '@/lib/pricing' // adjust path if different
+import { VARIANTS } from '@/lib/pricing'
 
 const baseUrl = process.env.NEXT_PUBLIC_APP_URL!
 
@@ -20,8 +19,8 @@ const eventJsonLd = {
   name: 'Smashh Zone Badminton Championship',
   description: 'Official badminton championship at Gaddafi Stadium, Lahore.',
   sport: 'Badminton',
-  startDate: '2026-09-12T09:00:00+05:00', // TODO: real start date/time
-  endDate: '2026-09-14T18:00:00+05:00', // TODO: real end date/time
+  startDate: '2026-09-05T09:00:00+05:00',
+  endDate: '2026-09-06T18:00:00+05:00',
   eventStatus: 'https://schema.org/EventScheduled',
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   location: {
@@ -29,13 +28,13 @@ const eventJsonLd = {
     name: 'Gaddafi Stadium',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Ferozepur Road', // TODO: confirm exact address
+      streetAddress: 'Hafeez Kardar Rd, Block E 2, Gulberg III',
       addressLocality: 'Lahore',
       addressRegion: 'Punjab',
       addressCountry: 'PK',
     },
   },
-  image: [`${baseUrl}/bg-img.jpg`],
+  image: [`${baseUrl}/share-banner.png`],
   organizer: {
     '@type': 'Organization',
     name: 'Smashh Zone',
@@ -43,13 +42,13 @@ const eventJsonLd = {
   },
   offers: {
     '@type': 'AggregateOffer',
-    url: `${baseUrl}/#pricing`, // TODO: update if pricing has its own route
+    url: `${baseUrl}/#pricing`,
     priceCurrency: 'PKR',
     lowPrice: Math.min(...prices),
     highPrice: Math.max(...prices),
     offerCount: Object.keys(VARIANTS).length,
     availability: 'https://schema.org/InStock',
-    validFrom: '2026-08-01T00:00:00+05:00', // TODO: real sale start date
+    validFrom: '2026-08-10T00:00:00+05:00', 
   },
 }
 

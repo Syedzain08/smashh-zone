@@ -13,7 +13,7 @@ const FAQS: FaqItem[] = [
   {
     question: 'What dates is Smashh Zone Badminton Championship happening?',
     answer:
-      "The championship runs September 5–6, 2026, at Gaddafi Stadium, Lahore. Day 1 covers group stage and quarterfinal matches, and Day 2 features the semifinals, championship final, and the Qawwali Night concert.",
+      "The championship runs September 5–6, 2026, at Gaddafi Stadium, Lahore. Day 1 covers group stage and quarterfinal matches, and Day 2 features the semifinals, championship final, and the Concert Night.",
   },
   {
     question: 'What time do gates open?',
@@ -23,7 +23,7 @@ const FAQS: FaqItem[] = [
   {
     question: "Who's performing at the concert?",
     answer:
-      'Hasan Raheem and Young Stunners headline the Qawwali Night, kicking off around 7:30 PM on Day 2 after the championship final.',
+      "Our Concert Night headliner is being finalized — the full reveal is coming soon. Stay tuned to our socials and this page for the announcement.",
   },
   {
     question: 'Is there an age restriction?',
@@ -39,6 +39,11 @@ const FAQS: FaqItem[] = [
     question: "What's your policy on refunds and transfers?",
     answer:
       "All ticket sales are final. We don't offer refunds, exchanges, or cancellations for any reason — including change of mind, inability to attend, or scheduling conflicts — and this applies equally across all ticket tiers. Please double-check your tier and date before completing checkout.",
+  },
+  {
+    question: 'How do I file a complaint or dispute?',
+    answer:
+      "Email support@smashhzone.com with your order details and a description of the issue. We acknowledge all complaints within 2–3 business days and aim to resolve them within 5–7 business days. For missing tickets specifically, see our \"Didn't Get Your Ticket?\" page linked in the footer.",
   },
   {
     question: 'Can I be removed from the event?',

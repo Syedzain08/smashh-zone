@@ -2,12 +2,10 @@
 @import "tw-animate-css";
 
 @theme {
-  /* Font Families mapped to Next.js font CSS variables */
   --font-display: var(--font-thirsty-script), cursive;
   --font-sans: var(--font-roboto), sans-serif;
   --font-primary: var(--font-roboto), sans-serif;
 
-  /* Custom Theme Colors */
   --color-primary: #0f5e45;
   --color-primary-foreground: #fbfcfd;
   --color-secondary: #fbfcfd;
@@ -30,7 +28,6 @@
   }
 }
 
-/* Marquee Animation */
 @keyframes marquee {
   from {
     transform: translateX(0);
@@ -51,5 +48,121 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee {
     animation: none;
+  }
+}
+
+@keyframes court-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.court-draw {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: court-draw 1.6s ease-out forwards;
+}
+
+@keyframes hero-rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-in {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: hero-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
+@keyframes shuttle-x {
+  0% { transform: translateX(-10vw); }
+  35% { transform: translateX(110vw); }
+
+  35.01%, 50% { transform: translateX(110vw); }
+
+  50.01% { transform: translateX(110vw); }
+  85% { transform: translateX(-10vw); }
+
+  85.01%, 100% { transform: translateX(-10vw); }
+}
+
+@keyframes shuttle-y {
+  0% {
+    transform: translateY(35vh) rotate(-140deg);
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  3% { opacity: 1; }
+  17.5% {
+    transform: translateY(2vh) rotate(-90deg);
+    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  }
+  33% {
+    transform: translateY(40vh) rotate(-30deg);
+    opacity: 1;
+  }
+  35% { opacity: 0; }
+
+  35.01%, 50% { opacity: 0; }
+
+  50.01% {
+    transform: translateY(35vh) rotate(140deg);
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  53% { opacity: 1; }
+  67.5% {
+    transform: translateY(2vh) rotate(90deg);
+    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  }
+  83% {
+    transform: translateY(40vh) rotate(30deg);
+    opacity: 1;
+  }
+  85% { opacity: 0; }
+
+  85.01%, 100% { opacity: 0; }
+}
+
+.shuttle-x-container {
+  animation: shuttle-x 6s linear infinite;
+  will-change: transform;
+}
+
+.shuttle-y-container {
+  animation: shuttle-y 6s infinite;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .court-draw,
+  .hero-in,
+  .shuttle-rally {
+    animation: none !important;
+    opacity: 1 !important;
+    stroke-dashoffset: 0 !important;
+    transform: none !important;
+  }
+}
+
+
+.racket-float {
+  animation: racket-drift 8s ease-in-out infinite;
+}
+@keyframes racket-drift {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-18px) rotate(-1deg); }
+}
+
+.shuttle-float {
+  animation: shuttle-drift 6.5s ease-in-out infinite;
+}
+@keyframes shuttle-drift {
+  0%, 100% { transform: translateY(0) rotate(3deg); }
+  50% { transform: translateY(14px) rotate(6deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .racket-float,
+  .shuttle-float {
+    animation: none !important;
   }
 }
