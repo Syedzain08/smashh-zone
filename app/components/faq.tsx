@@ -13,7 +13,7 @@ const FAQS: FaqItem[] = [
   {
     question: 'What dates is Smashh Zone Badminton Championship happening?',
     answer:
-      "The championship runs September 5–6, 2026, at Gaddafi Stadium, Lahore. Day 1 covers group stage and quarterfinal matches, and Day 2 features the semifinals, championship final, and the Concert Night.",
+      "The championship runs September 12-13, 2026, at Gaddafi Stadium, Lahore. Day 1 covers group stage and quarterfinal matches, and Day 2 features the semifinals, championship final, and the Concert Night.",
   },
   {
     question: 'What time do gates open?',
@@ -43,7 +43,7 @@ const FAQS: FaqItem[] = [
   {
     question: 'How do I file a complaint or dispute?',
     answer:
-      "Email support@smashhzone.com with your order details and a description of the issue. We acknowledge all complaints within 2–3 business days and aim to resolve them within 5–7 business days. For missing tickets specifically, see our \"Didn't Get Your Ticket?\" page linked in the footer.",
+      "Email support@smashhzone.com with your order details and a description of the issue. We acknowledge all complaints within 2-3 business days and aim to resolve them within 5-7 business days. For missing tickets specifically, see our \"Didn't Get Your Ticket?\" page linked in the footer.",
   },
   {
     question: 'Can I be removed from the event?',

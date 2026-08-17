@@ -19,8 +19,8 @@ const eventJsonLd = {
   name: 'Smashh Zone Badminton Championship',
   description: 'Official badminton championship at Gaddafi Stadium, Lahore.',
   sport: 'Badminton',
-  startDate: '2026-09-05T09:00:00+05:00',
-  endDate: '2026-09-06T18:00:00+05:00',
+  startDate: '2026-09-12T09:00:00+05:00',
+  endDate: '2026-09-13T18:00:00+05:00',
   eventStatus: 'https://schema.org/EventScheduled',
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   location: {
@@ -48,7 +48,7 @@ const eventJsonLd = {
     highPrice: Math.max(...prices),
     offerCount: Object.keys(VARIANTS).length,
     availability: 'https://schema.org/InStock',
-    validFrom: '2026-08-10T00:00:00+05:00', 
+    validFrom: '2026-08-25T00:00:00+05:00', 
   },
 }
 

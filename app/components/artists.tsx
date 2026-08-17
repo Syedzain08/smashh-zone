@@ -1,12 +1,4 @@
-import { Sparkles } from 'lucide-react';
-
-type Artist = {
-  role: string;
-};
-
-const artists: Artist[] = [
-  { role: 'Headliner' },
-];
+import Image from 'next/image';
 
 export default function ArtistShowcase() {
   return (
@@ -40,33 +32,21 @@ export default function ArtistShowcase() {
         </div>
 
         <div className="mt-14 mx-auto max-w-md">
-          {artists.map((artist) => (
+          <div className="group relative aspect-4/5 w-full overflow-hidden rounded-3xl border border-white/10 bg-black sm:aspect-3/4">
             <div
-              key={artist.role}
-              className="group relative aspect-4/5 w-full overflow-hidden rounded-3xl border border-white/10 bg-black sm:aspect-3/4"
-            >
-              <div
-                className="pointer-events-none absolute -inset-1 rounded-3xl opacity-40 blur-xl transition-opacity duration-500 group-hover:opacity-70"
+              className="pointer-events-none absolute -inset-1 rounded-3xl opacity-40 blur-xl transition-opacity duration-500 group-hover:opacity-70"
+            />
+
+            <div className="absolute inset-0 overflow-hidden rounded-3xl">
+              <Image
+                src="/guess-the-performer.png"
+                alt="Guess the performer"
+                fill
+                sizes="(max-width: 640px) 100vw, 448px"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
-
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 overflow-hidden rounded-3xl bg-linear-to-b from-black via-[#0a0a0a] to-black">
-                <div className="pointer-events-none absolute inset-0 opacity-20" style={{ background: 'radial-gradient(circle at center, #d4f21e, transparent 60%)' }} />
-
-                <span
-                  className="rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-secondary shadow-lg"
-                  style={{ background: 'var(--glow)' }}
-                >
-                  {artist.role}
-                </span>
-
-                <Sparkles className="h-8 w-8 text-accent/70" />
-
-                <span className="font-primary text-3xl font-extrabold uppercase tracking-widest text-white/80 md:text-4xl">
-                  Coming Soon
-                </span>
-              </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

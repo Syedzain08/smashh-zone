@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useState, useSyncExternalStore } from 'react';
 import { ArrowRight, Loader2 } from 'lucide-react';
 
-const EVENT_DATE = new Date('2026-09-05T09:00:00+05:00'); 
+const EVENT_DATE = new Date('2026-09-12T09:00:00+05:00'); 
 
 type TimeLeft = {
   days: number;
@@ -57,7 +57,7 @@ function getServerSnapshot(): TimeLeft | null {
 const SCHEDULE = [
   {
     day: 'Day 01',
-    date: 'Sep 5, 2026',
+    date: 'Sep 12, 2026',
     title: 'Championship Rounds',
     events: [
       { time: '09:00 AM', label: 'Gates Open & Registration' },
@@ -67,7 +67,7 @@ const SCHEDULE = [
   },
   {
     day: 'Day 02',
-    date: 'Sep 6, 2026',
+    date: 'Sep 13, 2026',
     title: 'Finals + Concert Night',
     events: [
       { time: '10:00 AM', label: 'Semifinal Battles' },

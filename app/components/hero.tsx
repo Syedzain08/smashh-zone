@@ -118,11 +118,11 @@ export default function Hero() {
       <div className="relative z-10 flex h-full flex-col">
         <div className="flex flex-1 flex-col justify-center px-6 md:px-12">
           <p className="hero-in text-xs uppercase tracking-widest text-secondary/70 md:text-sm" style={{ animationDelay: '0.2s' }}>
-            Sep 5–6, 2026 · Gaddafi Stadium, Lahore
+            Sep 12-13, 2026 · Gaddafi Stadium, Lahore
           </p>
 
           <h1 className="mt-3 font-primary text-5xl font-extrabold uppercase leading-none text-secondary sm:text-6xl md:text-7xl lg:text-8xl">
-            <span className="hero-in inline-block" style={{ animationDelay: '0.35s' }}>Smash Hard.</span>
+            <span className="hero-in inline-block" style={{ animationDelay: '0.35s' }}>Smashh Hard.</span>
             <br />
             <span className="hero-in inline-block text-accent" style={{ animationDelay: '0.5s' }}>Inspire More.</span>
           </h1>

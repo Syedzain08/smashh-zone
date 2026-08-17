@@ -13,7 +13,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Event Details | Smashh Zone Badminton Championship',
   description:
-    'Full schedule and match categories for the Smashh Zone Badminton Championship — U17, U19, and Open — Sep 5–6, 2026 at Gaddafi Stadium, Lahore.',
+    'Full schedule and match categories for the Smashh Zone Badminton Championship — U17, U19, and Open — Sep 12–13, 2026 at Gaddafi Stadium, Lahore.',
 };
 
 type Category = {
@@ -30,18 +30,18 @@ const CATEGORIES: Category[] = [
   {
     code: 'U17',
     name: 'Under-17',
-    eligibility: 'Ages 15 to 16 (Under 17 as of Sep 5, 2026)',
+    eligibility: 'Ages 15 to 16 (Under 17 as of Sep 12, 2026)',
     format: 'Singles, Doubles & Mixed',
-    day: 'Day 01 · Sep 5',
+    day: 'Day 01 · Sep 12',
     window: 'Starts 10:00 AM',
     note: 'Original CNIC or B-Form required at check-in for age verification',
   },
   {
     code: 'U19',
     name: 'Under-19',
-    eligibility: 'Ages 15 to 18 (Under 19 as of Sep 5, 2026)',
+    eligibility: 'Ages 15 to 18 (Under 19 as of Sep 12, 2026)',
     format: 'Singles, Doubles & Mixed',
-    day: 'Day 01 · Sep 5',
+    day: 'Day 01 · Sep 12',
     window: 'Starts 10:00 AM',
     note: 'Original CNIC or B-Form required at check-in for age verification',
   },
@@ -50,7 +50,7 @@ const CATEGORIES: Category[] = [
     name: 'Open Category',
     eligibility: 'Ages 15 and above (No upper age limit)',
     format: 'Singles, Doubles & Mixed',
-    day: 'Day 01 · Sep 5',
+    day: 'Day 01 · Sep 12',
     window: 'Starts 10:00 AM',
     note: 'Open to all skill levels meeting the 15+ age requirement',
   },
@@ -59,7 +59,7 @@ const CATEGORIES: Category[] = [
 const SCHEDULE = [
   {
     day: 'Day 01',
-    date: 'Sep 5, 2026',
+    date: 'Sep 12, 2026',
     title: 'Group Stage & Elimination Rounds',
     events: [
       { time: '09:00 AM', label: 'Gates Open & Player Registration' },
@@ -71,7 +71,7 @@ const SCHEDULE = [
   },
   {
     day: 'Day 02',
-    date: 'Sep 6, 2026',
+    date: 'Sep 13, 2026',
     title: 'Finals + Concert Night',
     events: [
       { time: '10:00 AM', label: 'Semifinal Battles (All Categories)' },
@@ -135,7 +135,7 @@ export default function EventDetailsPage() {
       <div className="relative mx-auto max-w-6xl">
         <section className="mx-auto max-w-3xl py-12 text-center">
           <span className="rounded-full border border-accent/20 bg-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-accent">
-            Sep 5–6, 2026 · Gaddafi Stadium, Lahore
+            Sep 12-13, 2026 · Gaddafi Stadium, Lahore
           </span>
           <h1 className="mt-6 font-primary text-4xl font-extrabold uppercase tracking-tight sm:text-6xl">
             Event <span className="font-display font-normal lowercase text-accent">Details</span>

@@ -81,7 +81,7 @@ export async function generateTicketPdf(ticket: TicketPdfInput): Promise<Buffer>
     color: primaryGreen,
   });
 
-  page.drawText("SEP 5-6, 2026", {
+  page.drawText("SEP 12-13, 2026", {
     x: 30,
     y: 230,
     size: 28,
