@@ -13,7 +13,7 @@ const FAQS: FaqItem[] = [
   {
     question: 'What dates is Smashh Zone Badminton Championship happening?',
     answer:
-      "The championship runs September 12-13, 2026, at Gaddafi Stadium, Lahore. Day 1 covers group stage and quarterfinal matches, and Day 2 features the semifinals, championship final, and the Concert Night.",
+      "The championship runs September 19-20, 2026, at Gaddafi Stadium, Lahore. Day 1 covers group stage and quarterfinal matches, and Day 2 features the semifinals, championship final, and the Concert Night.",
   },
   {
     question: 'What time do gates open?',

@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import {
   Carousel,
@@ -10,12 +10,25 @@ import {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
+  type CarouselApi,
 } from '@/components/ui/carousel';
 
-const images = ['/bg-img.jpg', '/bg-secondary.jpg'];
+const slides = [
+  { src: '/team-1.jpeg', alt: 'JSM team planning the event', caption: 'Our Team' },
+  { src: '/venue-1.jpeg', alt: 'Gaddafi Stadium venue', caption: 'Our Venue' },
+  { src: '/team-2.jpeg', alt: 'JSM team planning the event', caption: 'Our Team' },
+  { src: '/venue-2.jpeg', alt: 'Gaddafi Stadium venue', caption: 'Our Venue' },
+];
 
 export default function About() {
   const [isNavigating, setIsNavigating] = useState(false);
+  const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+
+  useEffect(() => {
+    if (!carouselApi) return;
+    const id = requestAnimationFrame(() => carouselApi.reInit());
+    return () => cancelAnimationFrame(id);
+  }, [carouselApi]);
 
   return (
     <section id='about-teaser' className="relative overflow-hidden bg-[#0a0f0d] px-6 py-20 text-white md:px-12 md:py-28">
@@ -26,17 +39,25 @@ export default function About() {
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2 md:gap-16">
         <div className="relative aspect-4/5 w-full overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
-          <Carousel className="h-full w-full [&>div]:h-full">
+          <Carousel setApi={setCarouselApi} className="h-full w-full [&>div]:h-full">
             <CarouselContent className="h-full">
-              {images.map((src) => (
-                <CarouselItem key={src} className="relative h-full">
+              {slides.map((slide, i) => (
+                <CarouselItem key={slide.src} className="relative h-full">
                   <Image
-                    src={src}
-                    alt="Event Preview"
+                    src={slide.src}
+                    alt={slide.alt}
                     fill
+                    priority={i === 0}
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
                   />
+                  {/* Gradient overlay so caption reads on any photo */}
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
+                  <div className="absolute bottom-5 left-5 md:bottom-6 md:left-6">
+                    <span className="font-display text-lg font-normal lowercase tracking-wide text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.6)] md:text-xl">
+                      {slide.caption}
+                    </span>
+                  </div>
                 </CarouselItem>
               ))}
             </CarouselContent>

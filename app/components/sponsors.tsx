@@ -6,18 +6,34 @@ type Sponsor = {
   href: string;
   glow: string;
 };
+
+
+const SPONSORS_CONFIRMED = false;
+
 const LOGO_DEV_TOKEN = process.env.LOGO_DEV_TOKEN;
 
 const sponsors: Sponsor[] = [
   { name: 'Pepsi', logo: `https://img.logo.dev/pepsi.com?token=${LOGO_DEV_TOKEN}`, href: 'https://pepsi.com', glow: '#1c4ea8' },
   { name: 'Coca-Cola', logo: `https://img.logo.dev/coca-cola.com?token=${LOGO_DEV_TOKEN}`, href: 'https://coca-cola.com', glow: '#e30613' },
-  { name: 'Nike', logo:`https://img.logo.dev/nike.com?token=${LOGO_DEV_TOKEN}`, href: 'https://nike.com', glow: '#111111' },
+  { name: 'Nike', logo: `https://img.logo.dev/nike.com?token=${LOGO_DEV_TOKEN}`, href: 'https://nike.com', glow: '#111111' },
   { name: 'Adidas', logo: `https://img.logo.dev/adidas.com?token=${LOGO_DEV_TOKEN}`, href: 'https://adidas.com', glow: '#111111' },
   { name: 'Red Bull', logo: `https://img.logo.dev/redbull.com?token=${LOGO_DEV_TOKEN}`, href: 'https://redbull.com', glow: '#eab308' },
   { name: 'Puma', logo: `https://img.logo.dev/puma.com?token=${LOGO_DEV_TOKEN}`, href: 'https://puma.com', glow: '#f97316' },
 ];
 
-const loopSponsors = [...sponsors, ...sponsors, ...sponsors, ...sponsors];
+
+const placeholderSponsors = [
+  { name: 'Title Partner', glow: '#d4f21e' },
+  { name: 'Beverage Partner', glow: '#1c4ea8' },
+  { name: 'Apparel Partner', glow: '#111111' },
+  { name: 'Energy Partner', glow: '#eab308' },
+  { name: 'Media Partner', glow: '#f97316' },
+  { name: 'Official Partner', glow: '#e30613' },
+];
+
+const loopSponsors = SPONSORS_CONFIRMED
+  ? [...sponsors, ...sponsors, ...sponsors, ...sponsors]
+  : [...placeholderSponsors, ...placeholderSponsors, ...placeholderSponsors, ...placeholderSponsors];
 
 export default function SponsorsMarquee() {
   return (
@@ -38,34 +54,67 @@ export default function SponsorsMarquee() {
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r from-primary to-transparent md:w-40" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-[#083f2e] to-transparent md:w-40" />
 
-        <div className="animate-marquee flex w-max items-center gap-6 md:gap-6">
-          {loopSponsors.map((sponsor, i) => (
-            <a
-              key={`${sponsor.name}-${i}`}
-              href={sponsor.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              tabIndex={i < sponsors.length ? 0 : -1}
-              aria-hidden={i >= sponsors.length}
-              className="group relative flex h-[70vw] w-[70vw] max-h-64 max-w-64 shrink-0 flex-col items-center justify-center gap-4 rounded-3xl bg-secondary p-6 shadow-lg transition-all duration-300 hover:-translate-y-1.5 sm:h-48 sm:w-48 sm:max-h-none sm:max-w-none md:h-28 md:w-48 md:gap-2 md:rounded-2xl md:p-4"
-              style={{ '--glow': sponsor.glow } as React.CSSProperties}
-            >
-              <div
-                className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-40 md:rounded-2xl"
-                style={{ background: 'var(--glow)' }}
-              />
-              <Image
-                src={sponsor.logo}
-                alt={sponsor.name}
-                width={64}
-                height={64}
-                className="relative h-16 w-16 object-contain sm:h-14 sm:w-14 md:h-10 md:w-10"
-              />
-              <span className="relative text-sm uppercase tracking-wide text-primary/50 sm:text-xs md:text-[10px]">
-                {sponsor.name}
-              </span>
-            </a>
-          ))}
+        {!SPONSORS_CONFIRMED && (
+          <div className="absolute inset-0 z-20 flex items-center justify-center">
+            <span className="rounded-full border border-accent/40 bg-black/70 px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-accent backdrop-blur-md shadow-lg">
+              Sponsor Lineup — Coming Soon
+            </span>
+          </div>
+        )}
+
+        <div
+          className={`animate-marquee flex w-max items-center gap-6 md:gap-6 ${
+            !SPONSORS_CONFIRMED ? 'blur-sm opacity-50 pointer-events-none select-none' : ''
+          }`}
+        >
+          {SPONSORS_CONFIRMED
+            ? loopSponsors.map((sponsor, i) => {
+                const s = sponsor as Sponsor;
+                return (
+                  <a
+                    key={`${s.name}-${i}`}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    tabIndex={i < sponsors.length ? 0 : -1}
+                    aria-hidden={i >= sponsors.length}
+                    className="group relative flex h-[70vw] w-[70vw] max-h-64 max-w-64 shrink-0 flex-col items-center justify-center gap-4 rounded-3xl bg-secondary p-6 shadow-lg transition-all duration-300 hover:-translate-y-1.5 sm:h-48 sm:w-48 sm:max-h-none sm:max-w-none md:h-28 md:w-48 md:gap-2 md:rounded-2xl md:p-4"
+                    style={{ '--glow': s.glow } as React.CSSProperties}
+                  >
+                    <div
+                      className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-40 md:rounded-2xl"
+                      style={{ background: 'var(--glow)' }}
+                    />
+                    <Image
+                      src={s.logo}
+                      alt={s.name}
+                      width={64}
+                      height={64}
+                      className="relative h-16 w-16 object-contain sm:h-14 sm:w-14 md:h-10 md:w-10"
+                    />
+                    <span className="relative text-sm uppercase tracking-wide text-primary/50 sm:text-xs md:text-[10px]">
+                      {s.name}
+                    </span>
+                  </a>
+                );
+              })
+            : loopSponsors.map((sponsor, i) => (
+                <div
+                  key={`${sponsor.name}-${i}`}
+                  aria-hidden="true"
+                  className="relative flex h-[70vw] w-[70vw] max-h-64 max-w-64 shrink-0 flex-col items-center justify-center gap-4 rounded-3xl bg-secondary p-6 shadow-lg sm:h-48 sm:w-48 sm:max-h-none sm:max-w-none md:h-28 md:w-48 md:gap-2 md:rounded-2xl md:p-4"
+                  style={{ '--glow': sponsor.glow } as React.CSSProperties}
+                >
+                  <div
+                    className="pointer-events-none absolute inset-0 rounded-3xl opacity-30 blur-xl md:rounded-2xl"
+                    style={{ background: 'var(--glow)' }}
+                  />
+                  <div className="relative h-16 w-16 rounded-xl bg-primary/10 sm:h-14 sm:w-14 md:h-10 md:w-10" />
+                  <span className="relative text-sm uppercase tracking-wide text-primary/50 sm:text-xs md:text-[10px]">
+                    {sponsor.name}
+                  </span>
+                </div>
+              ))}
         </div>
       </div>
     </section>

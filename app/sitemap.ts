@@ -6,7 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     throw new Error('NEXT_PUBLIC_APP_URL environment variable is not set');
   }
 
-  const lastUpdated = '2026-07-01T00:00:00.000Z';
+  const lastUpdated = '2026-08-31T00:00:00.000Z';
 
   return [
     { url: baseUrl, lastModified: lastUpdated, priority: 1.0 },
