@@ -76,7 +76,7 @@ const SCHEDULE = [
     events: [
       { time: '10:00 AM', label: 'Semifinal Battles (All Categories)' },
       { time: '04:00 PM', label: 'Championship Finals & Podium Ceremony' },
-      { time: '07:30 PM', label: 'Qawwali Night & Closing Ceremony' },
+      { time: '07:30 PM', label: 'Concert Night & Closing Ceremony' },
     ],
   },
 ];

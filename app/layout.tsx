@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { roboto, thirstyScript } from './fonts';
 import "./globals.css";
+import Script from "next/script";
 import { cn } from "@/lib/utils";
 import Footer from './components/footer'
 import Navbar from './components/navbar'
@@ -56,6 +57,12 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <Script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="16eef0f1-e0cb-47e8-b7a7-218160cda500"
+          strategy="afterInteractive"
         />
         <Navbar/>
         {children}
