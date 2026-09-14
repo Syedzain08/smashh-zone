@@ -1,5 +1,5 @@
-export type PassTierKey = "rhythm" | "champion" | "elite";
-export type PassTier = "RHYTHM" | "CHAMPION" | "ELITE";
+export type PassTierKey = "rhythm" | "champion" | "elite" | "test";
+export type PassTier = "RHYTHM" | "CHAMPION" | "ELITE" | "TEST";
 
 export interface PassFeature {
   label: string;
@@ -7,7 +7,7 @@ export interface PassFeature {
 }
 
 export interface PassVariant {
-  slug: PassTierKey;
+  tierKey: PassTierKey;
   tier: PassTier;
   label: string;
   tagline: string;
@@ -20,7 +20,7 @@ export interface PassVariant {
 
 export const VARIANTS: Record<PassTierKey, PassVariant> = {
   rhythm: {
-    slug: "rhythm",
+    tierKey: "rhythm",
     tier: "RHYTHM",
     label: "The Rhythm Pass",
     tagline: "Concert Only Access",
@@ -34,7 +34,7 @@ export const VARIANTS: Record<PassTierKey, PassVariant> = {
     ],
   },
   champion: {
-    slug: "champion",
+    tierKey: "champion",
     tier: "CHAMPION",
     label: "The Champion Pass",
     tagline: "Badminton + Concert Access",
@@ -49,7 +49,7 @@ export const VARIANTS: Record<PassTierKey, PassVariant> = {
     ],
   },
   elite: {
-    slug: "elite",
+    tierKey: "elite",
     tier: "ELITE",
     label: "The Elite Pass",
     tagline: "VIP Experience + Badminton Access",
@@ -60,6 +60,20 @@ export const VARIANTS: Record<PassTierKey, PassVariant> = {
       { label: "Base Concert Access", included: true },
       { label: "VIP Concert Access", included: true },
       { label: "Front Row Seats", included: true },
+    ],
+  },
+  test: {
+    tierKey: "test",
+    tier: "TEST",
+    label: "Test Pass",
+    tagline: "Internal test product",
+    price: 10000, // Rs. 100
+    totalTickets: 50,
+    features: [
+      { label: "Badminton Access", included: false },
+      { label: "Base Concert Access", included: false },
+      { label: "VIP Concert Access", included: false },
+      { label: "Front Row Seats", included: false },
     ],
   },
 };
@@ -94,8 +108,21 @@ export default function computePricing(
   price: number,
   quantity: number,
   tierLabel: string,
-  affiliation: string
+  affiliation: string,
+  tierKey?: PassTierKey
 ): PricingResult {
+  if (tierKey === "test") {
+    const grossSubtotalPaisa = price * quantity;
+    return {
+      grossSubtotalPaisa,
+      totalDiscountPaisa: 0,
+      netSubtotalPaisa: grossSubtotalPaisa,
+      processingFeePaisa: 0,
+      totalAmountPaisa: grossSubtotalPaisa,
+      isDelegation: false,
+    };
+  }
+
   const isEligibleForDelegation = tierLabel !== "The Rhythm Pass" && affiliation !== "Private";
   const isDelegation = isEligibleForDelegation && quantity >= 5;
 

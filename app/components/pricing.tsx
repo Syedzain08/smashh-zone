@@ -27,12 +27,17 @@ const PASS_ICONS: Record<PassTierKey, React.ReactNode> = {
       <Star className="h-4 w-4 fill-accent" />
     </div>
   ),
+  test: (
+    <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 p-2 text-accent">
+      <Star className="h-4 w-4" />
+    </div>
+  ),
 };
 
 const DISPLAY_ORDER: PassTierKey[] = ['rhythm', 'champion', 'elite'];
 
 export default function Pricing() {
-  const passes = DISPLAY_ORDER.map((slug) => VARIANTS[slug]);
+  const passes = DISPLAY_ORDER.map((key) => VARIANTS[key]);
   const [loadingTier, setLoadingTier] = useState<PassTierKey | null>(null);
 
   return (
@@ -58,12 +63,12 @@ export default function Pricing() {
 
         <div className="mt-16 grid gap-8 lg:grid-cols-3 lg:items-stretch">
           {passes.map((pass) => {
-            const isLoading = loadingTier === pass.slug;
+            const isLoading = loadingTier === pass.tierKey;
             const isOtherLoading = loadingTier !== null && !isLoading;
 
             return (
               <div
-                key={pass.slug}
+                key={pass.tierKey}
                 className={`group relative flex flex-col justify-between rounded-3xl p-6 transition-all duration-300 backdrop-blur-md sm:p-8 ${
                   pass.popular
                     ? 'z-10 border-2 border-accent bg-white/3 shadow-[0_0_35px_rgba(212,242,30,0.15)]'
@@ -80,7 +85,7 @@ export default function Pricing() {
                 <div>
                   <div className="border-b border-white/10 pb-6">
                     <div className="flex items-center justify-between gap-2">
-                      {PASS_ICONS[pass.slug]}
+                      {PASS_ICONS[pass.tierKey]}
                       <span className="shrink-0 rounded-xl border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-300">
                         {pass.totalTickets} Available
                       </span>
@@ -134,14 +139,14 @@ export default function Pricing() {
                 </div>
 
                 <Link
-                  href={`/checkout?tier=${pass.slug}`}
+                  href={`/checkout?tier=${pass.tierKey}`}
                   aria-disabled={isLoading || isOtherLoading}
                   onClick={(e) => {
                     if (isLoading || isOtherLoading) {
                       e.preventDefault();
                       return;
                     }
-                    setLoadingTier(pass.slug);
+                    setLoadingTier(pass.tierKey);
                   }}
                   className={`mt-8 flex w-full items-center justify-center gap-2 rounded-full py-4 text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
                     pass.popular

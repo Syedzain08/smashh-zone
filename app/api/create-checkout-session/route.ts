@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Institution name required" }, { status: 400 });
   }
 
-  const pricing = computePricing(variant.price, quantity, variant.label, body.affiliationType);
+  const pricing = computePricing(variant.price, quantity, variant.label, body.affiliationType, variant.tierKey);
   const orderNumber = `SMZ-${nanoid()}`;
 
   const attendeesData = [

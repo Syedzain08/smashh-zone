@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useFieldArray, useForm, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import computePricing from '@/lib/pricing';
+import computePricing, { PassVariant } from '@/lib/pricing';
 
 const attendeeSchema = z.object({
   name: z.string().min(2, 'Required'),
@@ -44,7 +44,6 @@ const checkoutSchema = z
   );
 
 type CheckoutFormValues = z.infer<typeof checkoutSchema>;
-type Variant = { label: string; price: number; tierKey: string };
 
 function formatCnic(value: string): string {
   const digits = value.replace(/\D/g, '').slice(0, 13);
@@ -58,7 +57,7 @@ function formatCnic(value: string): string {
   return formatted;
 }
 
-export default function CheckoutForm({ variant }: { variant: Variant }) {
+export default function CheckoutForm({ variant }: { variant: PassVariant }) {
   const {
     register,
     handleSubmit,
@@ -99,7 +98,7 @@ export default function CheckoutForm({ variant }: { variant: Variant }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedQuantity, fields.length, replace]);
 
-  const pricing = computePricing(variant.price, selectedQuantity, variant.label, selectedAffiliation);
+  const pricing = computePricing(variant.price, selectedQuantity, variant.label, selectedAffiliation, variant.tierKey);
   const {
     grossSubtotalPaisa,
     totalDiscountPaisa,
