@@ -67,7 +67,7 @@ export const VARIANTS: Record<PassTierKey, PassVariant> = {
     tier: "TEST",
     label: "Test Pass",
     tagline: "Internal test product",
-    price: 10000, // Rs. 100
+    price: 20000, // Rs. 200
     totalTickets: 50,
     features: [
       { label: "Badminton Access", included: false },
