@@ -118,7 +118,7 @@ export default function Hero() {
       <div className="relative z-10 flex h-full flex-col">
         <div className="flex flex-1 flex-col justify-center px-6 md:px-12">
           <p className="hero-in text-xs uppercase tracking-widest text-secondary/70 md:text-sm" style={{ animationDelay: '0.2s' }}>
-            Sep 19-20, 2026 · Gaddafi Stadium, Lahore
+            Oct 10-11, 2026 · Gaddafi Stadium, Lahore
           </p>
 
           <h1 className="mt-3 font-primary text-5xl font-extrabold uppercase leading-none text-secondary sm:text-6xl md:text-7xl lg:text-8xl">
