@@ -28,9 +28,8 @@ export const VARIANTS: Record<PassTierKey, PassVariant> = {
     totalTickets: 2500,
     features: [
       { label: "Badminton Access", included: false },
-      { label: "Base DJ Night Access", included: true },
-      { label: "VIP DJ Night Access", included: false },
-      { label: "Front Row Seats", included: false },
+      { label: "DJ Night Access", included: true },
+      { label: "Front Row Access", included: false },
     ],
   },
   champion: {
@@ -43,9 +42,8 @@ export const VARIANTS: Record<PassTierKey, PassVariant> = {
     popular: true,
     features: [
       { label: "Badminton Access", included: true },
-      { label: "Base DJ Night Access", included: true },
-      { label: "VIP DJ Night Access", included: false },
-      { label: "Front Row Seats", included: false },
+      { label: "DJ Night Access", included: true },
+      { label: "Front Row Access", included: true },
     ],
   },
   test: {
@@ -53,7 +51,7 @@ export const VARIANTS: Record<PassTierKey, PassVariant> = {
     tier: "TEST",
     label: "Test Pass",
     tagline: "Internal test product",
-    price: 20000, // Rs. 200
+    price: 5000, // Rs. 50
     totalTickets: 50,
     features: [
       { label: "Badminton Access", included: false },

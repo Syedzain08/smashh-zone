@@ -52,7 +52,7 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-8 lg:grid-cols-3 lg:items-stretch">
+        <div className="mt-16 grid gap-8 sm:grid-cols-2 sm:items-stretch max-w-3xl mx-auto">
           {passes.map((pass) => {
             const isLoading = loadingTier === pass.tierKey;
             const isOtherLoading = loadingTier !== null && !isLoading;
@@ -100,7 +100,7 @@ export default function Pricing() {
                     </p>
                   </div>
 
-                  <ul className="mt-6 flex flex-col gap-3">
+                  <ul className="mt-6 flex flex-col gap-4 py-2">
                     {pass.features.map((item) => (
                       <li
                         key={item.label}
