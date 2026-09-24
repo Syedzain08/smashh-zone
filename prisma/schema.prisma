@@ -33,7 +33,6 @@ enum TicketStatus {
 enum PassTier {
   RHYTHM
   CHAMPION
-  ELITE
   TEST
 }
 

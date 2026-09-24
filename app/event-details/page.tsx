@@ -72,11 +72,11 @@ const SCHEDULE = [
   {
     day: 'Day 02',
     date: 'Oct 11, 2026',
-    title: 'Finals + Concert Night',
+    title: 'Finals + DJ Night',
     events: [
       { time: '10:00 AM', label: 'Semifinal Battles (All Categories)' },
       { time: '04:00 PM', label: 'Championship Finals & Podium Ceremony' },
-      { time: '07:30 PM', label: 'Concert Night & Closing Ceremony' },
+      { time: '07:30 PM', label: 'DJ Night & Closing Ceremony' },
     ],
   },
 ];

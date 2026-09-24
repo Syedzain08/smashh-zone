@@ -18,15 +18,6 @@ const PASS_ICONS: Record<PassTierKey, React.ReactNode> = {
       <Mic className="h-4 w-4" />
     </div>
   ),
-  elite: (
-    <div className="flex items-center gap-1.5 rounded-xl border border-accent/40 bg-accent/20 p-2 text-accent">
-      <Trophy className="h-4 w-4" />
-      <span className="text-xs font-black text-slate-400">+</span>
-      <Mic className="h-4 w-4" />
-      <span className="text-xs font-black text-slate-400">+</span>
-      <Star className="h-4 w-4 fill-accent" />
-    </div>
-  ),
   test: (
     <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 p-2 text-accent">
       <Star className="h-4 w-4" />
@@ -34,7 +25,7 @@ const PASS_ICONS: Record<PassTierKey, React.ReactNode> = {
   ),
 };
 
-const DISPLAY_ORDER: PassTierKey[] = ['rhythm', 'champion', 'elite'];
+const DISPLAY_ORDER: PassTierKey[] = ['rhythm', 'champion'];
 
 export default function Pricing() {
   const passes = DISPLAY_ORDER.map((key) => VARIANTS[key]);

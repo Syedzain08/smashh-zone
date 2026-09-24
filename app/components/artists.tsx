@@ -22,7 +22,7 @@ export default function ArtistShowcase() {
             Live On Stage
           </p>
           <h2 className="mt-3 font-primary text-4xl font-extrabold uppercase leading-tight text-secondary md:text-5xl">
-            Concert Night
+            DJ Night
           </h2>
           <p className="mx-auto mt-4 max-w-md text-sm text-secondary/60 md:text-base">
             After two days of championship badminton, the courts fall quiet

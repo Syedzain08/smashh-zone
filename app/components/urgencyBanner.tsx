@@ -8,7 +8,7 @@ export default function UrgencyBanner() {
             <span>•</span>
             <span>GADDAFI STADIUM LAHORE</span>
             <span>•</span>
-            <span>2 DAYS OF CHAMPIONSHIP & CONCERT</span>
+            <span>2 DAYS OF CHAMPIONSHIP & DJ NIGHT</span>
             <span>•</span>
           </div>
         ))}

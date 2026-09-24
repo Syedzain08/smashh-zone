@@ -68,11 +68,11 @@ const SCHEDULE = [
   {
     day: 'Day 02',
     date: 'Oct 11, 2026',
-    title: 'Finals + Concert Night',
+    title: 'Finals + DJ Night',
     events: [
       { time: '10:00 AM', label: 'Semifinal Battles' },
       { time: '04:00 PM', label: 'Championship Final' },
-      { time: '07:30 PM', label: 'Concert Night & Closing' },
+      { time: '07:30 PM', label: 'DJ Night & Closing' },
     ],
   },
 ];
@@ -119,7 +119,7 @@ export default function EventDetails() {
             Two Days On The Clock
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-sm text-slate-300 md:text-base leading-relaxed">
-            Championship badminton by day, Concert Night to close it out. Here&apos;s how it plays out on court &mdash; and how long you have to grab a seat.
+            Championship badminton by day, DJ Night to close it out. Here&apos;s how it plays out on court &mdash; and how long you have to grab a seat.
           </p>
         </div>
         <div className="mx-auto mt-12 flex w-fit items-center justify-center gap-2 rounded-3xl border border-white/10 bg-white/3 p-4 sm:gap-4 sm:p-6 md:p-8 backdrop-blur-md shadow-2xl">
@@ -205,7 +205,7 @@ export default function EventDetails() {
           </div>
           <div className="flex items-start gap-2 text-left sm:items-center">
             <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-accent sm:mt-0" />
-            <span>Concert access included with All-Access &amp; Concert tiers</span>
+            <span>DJ access included with Rhythm &amp; Champion tiers</span>
           </div>
         </div>
       </div>

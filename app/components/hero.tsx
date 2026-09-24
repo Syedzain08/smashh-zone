@@ -128,7 +128,7 @@ export default function Hero() {
           </h1>
 
           <p className="hero-in mt-6 max-w-md text-sm text-secondary/80 md:text-base" style={{ animationDelay: '0.65s' }}>
-            Two days of badminton championship action, plus a live Concert
+            Two days of badminton championship action, plus a live DJ Night
             Night. Get your tickets before they&apos;re gone.
           </p>
             <Link
@@ -145,7 +145,7 @@ export default function Hero() {
           {[
             { number: '2026', label: 'Inaugural Edition' },
             { number: '2', label: 'Days of Live Action' },
-            { number: '1', label: 'Concert' },
+            { number: '1', label: 'DJ Night' },
           ].map((stat, i) => (
             <div key={stat.label} className="hero-in" style={{ animationDelay: `${0.95 + i * 0.1}s` }}>
               <p className="font-display text-3xl text-secondary md:text-4xl">{stat.number}</p>

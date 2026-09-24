@@ -77,7 +77,7 @@ export default function About() {
           </h2>
           <p className="mt-6 max-w-md text-sm text-slate-300 md:text-base leading-relaxed">
             Smashh Zone brings Lahore&apos;s youth together for two days of
-            competitive badminton and a live concert night — built and run by
+            competitive badminton and a live DJ night — built and run by
             JSM (Jojo Sports &amp; Management), a new team on a mission to
             create the region&apos;s biggest sports and culture events.
           </p>

@@ -25,7 +25,7 @@ export default function AboutPage() {
             Where High-Octane Sport Meets <span className="text-accent font-display font-normal">Live Music</span>
           </h1>
           <p className="mt-6 text-slate-400 text-sm md:text-base leading-relaxed">
-          Smashh Zone is Lahore&apos;s premier sports-entertainment festival — an open badminton championship bringing players from across the city together with powerhouse musical artists on one legendary stage at Gaddafi Stadium.          </p>
+          Smashh Zone is Lahore&apos;s premier sports-entertainment festival — an open badminton championship bringing players from across the city together with a powerhouse DJ night on one legendary stage at Gaddafi Stadium.</p>
         </section>
 
     
@@ -40,9 +40,9 @@ export default function AboutPage() {
 
           <div className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-md">
             <Music className="h-10 w-10 text-accent mb-4" />
-            <h3 className="text-lg font-bold">Live Concerts</h3>
+            <h3 className="text-lg font-bold">Live DJ Night</h3>
             <p className="mt-2 text-xs text-slate-400 leading-relaxed">
-              Feel the energy soar as electrifying musical artists perform live sets after the tournament action.
+             Feel the energy soar as an electrifying DJ takes over after the tournament action.
             </p>
           </div>
 
@@ -95,7 +95,7 @@ export default function AboutPage() {
           </div>
           <div>
             <span className="block text-3xl font-black text-accent">Live</span>
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Artist Performances</span>
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">DJ Performance</span>
           </div>
           <div>
             <span className="block text-3xl font-black text-accent">JSM</span>

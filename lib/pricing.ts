@@ -1,5 +1,5 @@
-export type PassTierKey = "rhythm" | "champion" | "elite" | "test";
-export type PassTier = "RHYTHM" | "CHAMPION" | "ELITE" | "TEST";
+export type PassTierKey = "rhythm" | "champion" | "test";
+export type PassTier = "RHYTHM" | "CHAMPION" | "TEST";
 
 export interface PassFeature {
   label: string;
@@ -23,13 +23,13 @@ export const VARIANTS: Record<PassTierKey, PassVariant> = {
     tierKey: "rhythm",
     tier: "RHYTHM",
     label: "The Rhythm Pass",
-    tagline: "Concert Only Access",
-    price: 199900,
-    totalTickets: 2300,
+    tagline: "DJ Night Only Access",
+    price: 169900,
+    totalTickets: 2500,
     features: [
       { label: "Badminton Access", included: false },
-      { label: "Base Concert Access", included: true },
-      { label: "VIP Concert Access", included: false },
+      { label: "Base DJ Night Access", included: true },
+      { label: "VIP DJ Night Access", included: false },
       { label: "Front Row Seats", included: false },
     ],
   },
@@ -37,29 +37,15 @@ export const VARIANTS: Record<PassTierKey, PassVariant> = {
     tierKey: "champion",
     tier: "CHAMPION",
     label: "The Champion Pass",
-    tagline: "Badminton + Concert Access",
-    price: 229900,
+    tagline: "Badminton + DJ Night Access",
+    price: 199900,
     totalTickets: 1000,
     popular: true,
     features: [
       { label: "Badminton Access", included: true },
-      { label: "Base Concert Access", included: true },
-      { label: "VIP Concert Access", included: false },
+      { label: "Base DJ Night Access", included: true },
+      { label: "VIP DJ Night Access", included: false },
       { label: "Front Row Seats", included: false },
-    ],
-  },
-  elite: {
-    tierKey: "elite",
-    tier: "ELITE",
-    label: "The Elite Pass",
-    tagline: "VIP Experience + Badminton Access",
-    price: 499900,
-    totalTickets: 200,
-    features: [
-      { label: "Badminton Access", included: true },
-      { label: "Base Concert Access", included: true },
-      { label: "VIP Concert Access", included: true },
-      { label: "Front Row Seats", included: true },
     ],
   },
   test: {
@@ -71,8 +57,8 @@ export const VARIANTS: Record<PassTierKey, PassVariant> = {
     totalTickets: 50,
     features: [
       { label: "Badminton Access", included: false },
-      { label: "Base Concert Access", included: false },
-      { label: "VIP Concert Access", included: false },
+      { label: "Base DJ Night Access", included: false },
+      { label: "VIP DJ Night Access", included: false },
       { label: "Front Row Seats", included: false },
     ],
   },
@@ -86,14 +72,13 @@ const MDR_FLAT_PAISA = 30 * 100;
 
 // Sales tax is charged on the MDR fee itself (16% of MDR).
 const SALES_TAX_ON_MDR_RATE = 0.16;
-const SALES_TAX_ON_MDR_PERCENTAGE_RATE = SALES_TAX_ON_MDR_RATE * MDR_PERCENTAGE_RATE; 
-const SALES_TAX_ON_MDR_FLAT_PAISA = SALES_TAX_ON_MDR_RATE * MDR_FLAT_PAISA; 
+const SALES_TAX_ON_MDR_PERCENTAGE_RATE = SALES_TAX_ON_MDR_RATE * MDR_PERCENTAGE_RATE;
+const SALES_TAX_ON_MDR_FLAT_PAISA = SALES_TAX_ON_MDR_RATE * MDR_FLAT_PAISA;
 const WITHHOLDING_INCOME_TAX_RATE = 0.01;
 
+const PERCENTAGE_RATE = MDR_PERCENTAGE_RATE + SALES_TAX_ON_MDR_PERCENTAGE_RATE + WITHHOLDING_INCOME_TAX_RATE;
 
-const PERCENTAGE_RATE = MDR_PERCENTAGE_RATE + SALES_TAX_ON_MDR_PERCENTAGE_RATE + WITHHOLDING_INCOME_TAX_RATE; 
-
-const FLAT_FEE_PAISA = MDR_FLAT_PAISA + SALES_TAX_ON_MDR_FLAT_PAISA; 
+const FLAT_FEE_PAISA = MDR_FLAT_PAISA + SALES_TAX_ON_MDR_FLAT_PAISA;
 
 export interface PricingResult {
   grossSubtotalPaisa: number;
@@ -111,7 +96,6 @@ export default function computePricing(
   affiliation: string,
   tierKey?: PassTierKey
 ): PricingResult {
-
   void tierKey;
   const isEligibleForDelegation = tierLabel !== "The Rhythm Pass" && affiliation !== "Private";
   const isDelegation = isEligibleForDelegation && quantity >= 5;
