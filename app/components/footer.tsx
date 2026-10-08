@@ -112,16 +112,6 @@ export default function Footer() {
                     0316 4968340
                   </Link>
                 </li>
-                <li className="flex flex-wrap items-center gap-2.5">
-                  <Phone className="h-4 w-4 shrink-0 text-accent" />
-                  <span className="text-slate-400">COO:</span>
-                  <Link
-                    href="tel:+923208430514"
-                    className="font-medium text-white hover:text-accent underline transition-colors"
-                  >
-                    0320 8430514
-                  </Link>
-                </li>
             </ul>
           </div>
         </div>
